@@ -1,1 +1,1 @@
-import('./src/my-element.js')
+import ('./src/calculos/costo-mano-obra.js');
