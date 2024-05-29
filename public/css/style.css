@@ -148,4 +148,19 @@ header label {
     #menu-bar:checked ~ .navbar{
         display: initial;
     }
+    #main h2{
+        margin-top:120px;
+    }
+    .cuadros-container{
+        flex-direction: column;
+        gap:50px
+    }
+    .cuadros{
+        margin-left: 90px;
+        display: flex;
+        gap:20px;
+    }
+    .cuadros p{
+        margin-top: 100px;
+    }
 }
