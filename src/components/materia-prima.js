@@ -29,6 +29,7 @@ static styles = css`
     label {
     font-weight: bold;
     margin-top: 10px;
+    color: black;
     }
     input[type="number"], input[type="text"] {
     padding: 10px;
