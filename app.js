@@ -1,0 +1,1 @@
+import ('./src/calculos/costo-mano-obra.js');
