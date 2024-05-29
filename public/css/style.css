@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Freeman&display=swap');
 *{
     margin: 0;
     padding: 0;
@@ -7,6 +8,7 @@
 
 body{
     min-height: 100vh;
+    font-family: "Freeman", sans-serif;
 }
 
 header{
@@ -60,4 +62,90 @@ header .navbar ul li ul li ul{
 }
 header .navbar ul li:hover > ul{
     display: inline;
+}
+
+#menu-bar{
+    display: none;
+}
+
+header label {
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+    display: none;
+
+}
+#main h2{
+    margin-top: 200px;
+    text-align: center;
+    font-size: 30px;
+    color:rgb(54, 54, 54)
+}
+#main h3{
+    font-size: 25px;
+    text-align: center;
+    color:rgb(54, 54, 54)
+}
+.cuadros-container{
+    display: flex;
+    margin-top: 100px;
+    justify-content: space-around;
+}
+.cuadros-img{
+    width: 350px;
+    height: 250px;
+    border-radius: 20px;
+    border: solid 2px #2D836D;
+}
+.cuadros p{
+    font-size: 23px;
+    text-align: center;
+}
+#main h4{
+    margin-top: 100px;
+    font-size: 25px;
+    text-align: center;
+    color:rgb(54, 54, 54)
+}
+.click{
+    width: 50px;
+    position: absolute;
+    right: 40%;
+}
+
+
+@media(max-width:991px){
+    header {
+        padding: 20px;
+    }
+    header label {
+        display: initial;
+    }
+    header .navbar{
+        position: absolute;
+        top:100%;
+        left:0;
+        right: 0;
+        background-color: #2D836D;
+        border-top: 1px solid rgb(100, 98, 98);
+        display: none;
+    }
+    header .navbar ul li {
+        width: 100%;
+    }
+    header .navbar ul li ul {
+        position: relative;
+        width: 100%;
+    }
+    header .navbar ul li ul li{
+        background-color: #e9b4af;
+        height: 50px;
+    }
+    header .navbar ul li ul li ul{
+        width: 100%;
+        left: 0;
+    }
+    #menu-bar:checked ~ .navbar{
+        display: initial;
+    }
 }
