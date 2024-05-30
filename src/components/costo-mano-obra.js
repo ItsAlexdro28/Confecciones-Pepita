@@ -1,174 +1,111 @@
 import { LitElement, html, css } from 'lit';
 
-export class EmployeeForm extends LitElement {
-static properties = {
-    employeeCount: { type: Number },
-    totalSalary: { type: Number },
-    totalBenefits: { type: Number },
-    employees: { type: Array },
-    currentEmployee: { type: Object },
-    benefits: { type: Number },
-    indirectCosts: { type: Number }
-};
-
-static styles = css`
+class EmployeeForm extends LitElement {
+  static styles = css`
     :host {
-    display: block;
-    font-family: Arial, sans-serif;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    h1 {
-    text-align: center;
-    color: #333;
-    }
-    .section {
-    margin-bottom: 20px;
-    }
-    .section h2 {
-    margin-top: 0;
-    }
-    .employee {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
-    }
-    label {
-    font-weight: bold;
-    margin-top: 10px;
-    color: black;
-    }
-    input[type="number"] {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1em;
-    margin-top: 5px;
-    width: calc(100% - 22px);
-    }
-    button {
-    background-color: #007BFF;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
-    margin-top: 10px;
-    }
-    button:hover {
-    background-color: #0056b3;
-    }
-    .buttons {
-    display: flex;
-    justify-content: space-between;
+      display: block;
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
     h2 {
-    text-align: center;
-    color: #333;
-    margin-top: 20px;
+      text-align: center;
+      color: #333;
     }
-`;
+    form {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    label {
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: black;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #007BFF;
+      color: #fff;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  `;
 
-constructor() {
+  constructor() {
     super();
-    this.employeeCount = 1;
-    this.totalSalary = 0;
-    this.totalBenefits = 0;
-    this.employees = [];
-    this.currentEmployee = { salary: '', hours: '' };
-    this.benefits = 0;
-    this.loadFromLocalStorage();
-}
+    this.currentEmployee = {hourlyWage: '', hoursWorked: '', benefits: ''};
+    this.totalCost = 0;
+  }
 
-loadFromLocalStorage() {
-    const storedEmployees = JSON.parse(localStorage.getItem('employees'));
-    const storedBenefits = parseFloat(localStorage.getItem('benefits')) || 0;
-    if (storedEmployees) {
-    this.employees = storedEmployees;
-    this.benefits = storedBenefits;
-    this.calculateSalary();
-    }
-}
+  updateEmployee(event) {
+    const { name, value } = event.target;
+    this.currentEmployee = { ...this.currentEmployee, [name]: value };
+  }
 
-saveToLocalStorage() {
-    localStorage.setItem('employees', JSON.stringify(this.employees));
-    localStorage.setItem('benefits', this.benefits);
-}
+  calculateTotalSalary() {
+    const { hourlyWage, hoursWorked, benefits, overheads } = this.currentEmployee;
+    return (parseFloat(hourlyWage) * parseFloat(hoursWorked)) + parseFloat(benefits);
+  }
 
-addEmployee() {
-    if (this.currentEmployee.salary && this.currentEmployee.hours) {
-    this.employees.push(this.currentEmployee);
-    this.currentEmployee = { salary: '', hours: '' };
-    this.requestUpdate();
-    this.saveToLocalStorage();
-    } else {
-    alert("Por favor, complete los campos del empleado actual antes de agregar uno nuevo.");
-    }
-}
+  addEmployee() {
+    const totalSalary = this.calculateTotalSalary();
+    const employeeData = {
+      ...this.currentEmployee,
+      totalSalary
+    };
 
-updateEmployee(field, value) {
-    this.currentEmployee = { ...this.currentEmployee, [field]: value };
-}
+    let employees = JSON.parse(localStorage.getItem('employees')) || [];
+    employees.push(employeeData);
+    localStorage.setItem('employees', JSON.stringify(employees));
+    
+    this.currentEmployee = {hourlyWage: '', hoursWorked: '', benefits: ''};
+    this.calculateTotalCost();
+  }
 
-updateBenefits(value) {
-    this.benefits = parseFloat(value) || 0;
-    this.saveToLocalStorage();
-    this.calculateSalary();
-}
+  calculateTotalCost() {
+    let employees = JSON.parse(localStorage.getItem('employees')) || [];
+    this.totalCost = employees.reduce((acc, employee) => acc + employee.totalSalary, 0);
+    localStorage.setItem('totalCost', JSON.stringify(this.totalCost));
+  }
 
-updateIndirectCosts(value) {
-    this.indirectCosts = parseFloat(value) || 0;
-    this.saveToLocalStorage();
-    this.calculateSalary();
-}
-
-calculateSalary(event) {
-    if (event) event.preventDefault();
-    let totalSalary = 0;
-    for (let employee of this.employees) {
-    const salary = parseFloat(employee.salary) || 0;
-    const hours = parseFloat(employee.hours) || 0;
-    totalSalary += salary * hours;
-    }
-    this.totalSalary = totalSalary + this.benefits;
-}
-
-render() {
+  render() {
     return html`
-    <h1>Calculadora de Costos de Mano De Obra</h1>
-    <form @submit="${this.calculateSalary}">
-        <div class="section">
-        <h2>Datos de los Empleados</h2>
-        <div class="employee">
-            <label for="salary">Salario por hora del empleado:</label>
-            <input type="number" id="salary" name="salary" .value="${this.currentEmployee.salary}" @input="${e => this.updateEmployee('salary', e.target.value)}" required>
-            <label for="hours">Horas trabajadas por el empleado:</label>
-            <input type="number" id="hours" name="hours" .value="${this.currentEmployee.hours}" @input="${e => this.updateEmployee('hours', e.target.value)}" required>
-        </div>
-        <div class="buttons">
-            <button type="button" @click="${this.addEmployee}">Agregar empleado</button>
-        </div>
-        </div>
-        <div class="section">
-        <h2>Beneficios y Prestaciones</h2>
-        <label for="benefits">Monto total de beneficios y prestaciones:</label>
-        <input type="number" id="benefits" name="benefits" .value="${this.benefits}" @input="${e => this.updateBenefits(e.target.value)}" required>
-        </div>
-        <div class="buttons">
-        <button type="submit">Enviar</button>
-        </div>
-    </form>
-    <h2>Salario Base Total: <span>${this.totalSalary.toFixed(2)}</span></h2>
+      <h2>Calcular Costo de Mano de Obra</h2>
+      <form @submit="${this.handleSubmit}">
+        <label>Salario por Hora</label>
+        <input type="number" name="hourlyWage" .value="${this.currentEmployee.hourlyWage}" @input="${this.updateEmployee}" required>
+
+        <label>Número de Horas Trabajadas</label>
+        <input type="number" name="hoursWorked" .value="${this.currentEmployee.hoursWorked}" @input="${this.updateEmployee}" required>
+
+        <label>Beneficios</label>
+        <input type="number" name="benefits" .value="${this.currentEmployee.benefits}" @input="${this.updateEmployee}">
+
+        <button type="button" @click="${this.addEmployee}">Calcular</button>
+      </form>
+      <p>Total Costo de Mano de Obra: ${this.totalCost.toFixed(2)}</p>
     `;
-}
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    this.addEmployee();
+  }
 }
 
 customElements.define('employee-form', EmployeeForm);
+
 
 
 
