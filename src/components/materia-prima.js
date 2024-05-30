@@ -7,19 +7,20 @@ static properties = {
 };
 
 static styles = css`
-    :host {
+    .formulario {
     display: block;
     font-family: Arial, sans-serif;
-    max-width: 600px;
-    margin: 0 auto;
+    max-width: 1000px;
+    margin-top:160px;
+    margin-left:500px;
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
     h2 {
     text-align: center;
     color: #333;
+    font-size:32px;
     }
     .material {
     display: flex;
@@ -60,7 +61,7 @@ static styles = css`
 constructor() {
     super();
     this.materials = [];
-    this.currentMaterial = { name: '', price: '', supplier: '', quantity: '' };
+    this.currentMaterial = { name: '', price: '', supplier: '', quantity: '', category:'' };
     this.loadFromLocalStorage();
 }
 
@@ -76,7 +77,7 @@ saveToLocalStorage() {
 addMaterial() {
     if (this.currentMaterial.name && this.currentMaterial.price && this.currentMaterial.supplier && this.currentMaterial.quantity) {
     this.materials.push(this.currentMaterial);
-    this.currentMaterial = { name: '', price: '', supplier: '', quantity: '' };
+    this.currentMaterial = { name: '', price: '', supplier: '', quantity: '', category:'' };
     this.requestUpdate();
     this.saveToLocalStorage();
     } else {
@@ -90,19 +91,39 @@ updateMaterial(field, value) {
 
 render() {
     return html`
-    <h2>Materias Primas</h2>
-    <div class="material">
-        <label for="materialName">Nombre de la materia prima:</label>
-        <input type="text" id="materialName" name="materialName" .value="${this.currentMaterial.name}" @input="${e => this.updateMaterial('name', e.target.value)}" required>
-        <label for="materialPrice">Precio de la materia prima:</label>
-        <input type="number" id="materialPrice" name="materialPrice" .value="${this.currentMaterial.price}" @input="${e => this.updateMaterial('price', e.target.value)}" required>
-        <label for="materialSupplier">Proveedor de la materia prima:</label>
-        <input type="text" id="materialSupplier" name="materialSupplier" .value="${this.currentMaterial.supplier}" @input="${e => this.updateMaterial('supplier', e.target.value)}" required>
-        <label for="materialQuantity">Cantidad disponible:</label>
-        <input type="number" id="materialQuantity" name="materialQuantity" .value="${this.currentMaterial.quantity}" @input="${e => this.updateMaterial('quantity', e.target.value)}" required>
-    </div>
-    <div class="buttons">
-        <button type="button" @click="${this.addMaterial}">Agregar materia prima</button>
+    <div class="formulario">
+        <h2>Materias Primas</h2>
+        <div class="material">
+            <label for="materialName">Nombre de la materia prima:</label>
+            <input type="text" id="materialName" name="materialName" .value="${this.currentMaterial.name}" @input="${e => this.updateMaterial('name', e.target.value)}" required>
+            <label for="materialPrice">Precio de la materia prima:</label>
+            <input type="number" id="materialPrice" name="materialPrice" .value="${this.currentMaterial.price}" @input="${e => this.updateMaterial('price', e.target.value)}" required>
+            <label for="materialSupplier">Proveedor de la materia prima:</label>
+            <input type="text" id="materialSupplier" name="materialSupplier" .value="${this.currentMaterial.supplier}" @input="${e => this.updateMaterial('supplier', e.target.value)}" required>
+            <label for="materialQuantity">Cantidad disponible:</label>
+            <input type="number" id="materialQuantity" name="materialQuantity" .value="${this.currentMaterial.quantity}" @input="${e => this.updateMaterial('quantity', e.target.value)}" required>
+           
+            <label for="opcion_select">Categoria:</label><br>
+                <select id="opcion_select" name="opcion_select" @change="${e => this.updateMaterial('category', e.target.value)}" required>
+                <option value="Tela">Tela</option>
+                <option value="Botones">Botones</option>
+                <option value="Hilo">Hilo</option>
+                <option value="Cordeles">Cordeles</option>
+                </select><br><br>
+
+            
+            <label for="category">Categoria:</label>
+            <input type="s" id="materialQuantity" name="materialQuantity" .value="${this.currentMaterial.quantity}" @input="${e => this.updateMaterial('quantity', e.target.value)}" required>
+            <label for="materialQuantity">Cantidad disponible:</label>
+            <input type="number" id="materialQuantity" name="materialQuantity" .value="${this.currentMaterial.quantity}" @input="${e => this.updateMaterial('quantity', e.target.value)}" required>
+            <label for="materialQuantity">Cantidad disponible:</label>
+            <input type="number" id="materialQuantity" name="materialQuantity" .value="${this.currentMaterial.quantity}" @input="${e => this.updateMaterial('quantity', e.target.value)}" required>
+            <label for="materialQuantity">Cantidad disponible:</label>
+            <input type="number" id="materialQuantity" name="materialQuantity" .value="${this.currentMaterial.quantity}" @input="${e => this.updateMaterial('quantity', e.target.value)}" required>
+        </div>
+        <div class="buttons">
+            <button type="button" @click="${this.addMaterial}">Agregar materia prima</button>
+        </div>
     </div>
     `;
 }
