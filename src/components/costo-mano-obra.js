@@ -5,7 +5,6 @@ static properties = {
     employeeCount: { type: Number },
     totalSalary: { type: Number },
     totalBenefits: { type: Number },
-    totalIndirectCosts: { type: Number },
     employees: { type: Array },
     currentEmployee: { type: Object },
     benefits: { type: Number },
@@ -80,22 +79,18 @@ constructor() {
     this.employeeCount = 1;
     this.totalSalary = 0;
     this.totalBenefits = 0;
-    this.totalIndirectCosts = 0;
     this.employees = [];
     this.currentEmployee = { salary: '', hours: '' };
     this.benefits = 0;
-    this.indirectCosts = 0;
     this.loadFromLocalStorage();
 }
 
 loadFromLocalStorage() {
     const storedEmployees = JSON.parse(localStorage.getItem('employees'));
     const storedBenefits = parseFloat(localStorage.getItem('benefits')) || 0;
-    const storedIndirectCosts = parseFloat(localStorage.getItem('indirectCosts')) || 0;
     if (storedEmployees) {
     this.employees = storedEmployees;
     this.benefits = storedBenefits;
-    this.indirectCosts = storedIndirectCosts;
     this.calculateSalary();
     }
 }
@@ -103,7 +98,6 @@ loadFromLocalStorage() {
 saveToLocalStorage() {
     localStorage.setItem('employees', JSON.stringify(this.employees));
     localStorage.setItem('benefits', this.benefits);
-    localStorage.setItem('indirectCosts', this.indirectCosts);
 }
 
 addEmployee() {
@@ -141,7 +135,7 @@ calculateSalary(event) {
     const hours = parseFloat(employee.hours) || 0;
     totalSalary += salary * hours;
     }
-    this.totalSalary = totalSalary + this.benefits + this.indirectCosts;
+    this.totalSalary = totalSalary + this.benefits;
 }
 
 render() {
@@ -165,13 +159,8 @@ render() {
         <label for="benefits">Monto total de beneficios y prestaciones:</label>
         <input type="number" id="benefits" name="benefits" .value="${this.benefits}" @input="${e => this.updateBenefits(e.target.value)}" required>
         </div>
-        <div class="section">
-        <h2>Costos Indirectos</h2>
-        <label for="indirectCosts">Monto total de costos indirectos:</label>
-        <input type="number" id="indirectCosts" name="indirectCosts" .value="${this.indirectCosts}" @input="${e => this.updateIndirectCosts(e.target.value)}" required>
-        </div>
         <div class="buttons">
-        <button type="submit">Calcular</button>
+        <button type="submit">Enviar</button>
         </div>
     </form>
     <h2>Salario Base Total: <span>${this.totalSalary.toFixed(2)}</span></h2>
