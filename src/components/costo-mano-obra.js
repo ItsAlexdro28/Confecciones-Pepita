@@ -1,128 +1,111 @@
 import { LitElement, html, css } from 'lit';
 
-export class EmployeeForm extends LitElement {
-static properties = {
-    employeeCount: { type: Number },
-    totalSalary: { type: Number },
-    totalBenefits: { type: Number },
-    totalIndirectCosts: { type: Number },
-    employees: { type: Array },
-    currentEmployee: { type: Object },
-    benefits: { type: Number },
-    indirectCosts: { type: Number }
-};
+class EmployeeForm extends LitElement {
+  static styles = css`
+    :host {
+      display: block;
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    form {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    label {
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: black;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #007BFF;
+      color: #fff;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  `;
 
-
-constructor() {
+  constructor() {
     super();
-    this.employeeCount = 1;
-    this.totalSalary = 0;
-    this.totalBenefits = 0;
-    this.totalIndirectCosts = 0;
-    this.employees = [];
-    this.currentEmployee = { salary: '', hours: '' };
-    this.benefits = 0;
-    this.indirectCosts = 0;
-    this.loadFromLocalStorage();
-}
+    this.currentEmployee = {hourlyWage: '', hoursWorked: '', benefits: ''};
+    this.totalCost = 0;
+  }
 
-loadFromLocalStorage() {
-    const storedEmployees = JSON.parse(localStorage.getItem('employees'));
-    const storedBenefits = parseFloat(localStorage.getItem('benefits')) || 0;
-    const storedIndirectCosts = parseFloat(localStorage.getItem('indirectCosts')) || 0;
-    if (storedEmployees) {
-    this.employees = storedEmployees;
-    this.benefits = storedBenefits;
-    this.indirectCosts = storedIndirectCosts;
-    this.calculateSalary();
-    }
-}
+  updateEmployee(event) {
+    const { name, value } = event.target;
+    this.currentEmployee = { ...this.currentEmployee, [name]: value };
+  }
 
-saveToLocalStorage() {
-    localStorage.setItem('employees', JSON.stringify(this.employees));
-    localStorage.setItem('benefits', this.benefits);
-    localStorage.setItem('indirectCosts', this.indirectCosts);
-}
+  calculateTotalSalary() {
+    const { hourlyWage, hoursWorked, benefits, overheads } = this.currentEmployee;
+    return (parseFloat(hourlyWage) * parseFloat(hoursWorked)) + parseFloat(benefits);
+  }
 
-addEmployee() {
-    if (this.currentEmployee.salary && this.currentEmployee.hours) {
-    this.employees.push(this.currentEmployee);
-    this.currentEmployee = { salary: '', hours: '' };
-    this.requestUpdate();
-    this.saveToLocalStorage();
-    } else {
-    alert("Por favor, complete los campos del empleado actual antes de agregar uno nuevo.");
-    }
-}
+  addEmployee() {
+    const totalSalary = this.calculateTotalSalary();
+    const employeeData = {
+      ...this.currentEmployee,
+      totalSalary
+    };
 
-updateEmployee(field, value) {
-    this.currentEmployee = { ...this.currentEmployee, [field]: value };
-}
+    let employees = JSON.parse(localStorage.getItem('employees')) || [];
+    employees.push(employeeData);
+    localStorage.setItem('employees', JSON.stringify(employees));
+    
+    this.currentEmployee = {hourlyWage: '', hoursWorked: '', benefits: ''};
+    this.calculateTotalCost();
+  }
 
-updateBenefits(value) {
-    this.benefits = parseFloat(value) || 0;
-    this.saveToLocalStorage();
-    this.calculateSalary();
-}
+  calculateTotalCost() {
+    let employees = JSON.parse(localStorage.getItem('employees')) || [];
+    this.totalCost = employees.reduce((acc, employee) => acc + employee.totalSalary, 0);
+    localStorage.setItem('totalCost', JSON.stringify(this.totalCost));
+  }
 
-updateIndirectCosts(value) {
-    this.indirectCosts = parseFloat(value) || 0;
-    this.saveToLocalStorage();
-    this.calculateSalary();
-}
-
-calculateSalary(event) {
-    if (event) event.preventDefault();
-    let totalSalary = 0;
-    for (let employee of this.employees) {
-    const salary = parseFloat(employee.salary) || 0;
-    const hours = parseFloat(employee.hours) || 0;
-    totalSalary += salary * hours;
-    }
-    this.totalSalary = totalSalary + this.benefits + this.indirectCosts;
-}
-
-render() {
+  render() {
     return html`
-    <style>
-        @import "/public/css/style.css";
-      </style>
-    <div class="formulario">
-        <h1>Calculadora de Costos de Mano De Obra</h1>
-        <form @submit="${this.calculateSalary}">
-            <div class="section">
-            <h2>Datos de los Empleados</h2>
-            <div class="employee">
-                <label for="salary">Salario por hora del empleado:</label>
-                <input type="number" id="salary" name="salary" .value="${this.currentEmployee.salary}" @input="${e => this.updateEmployee('salary', e.target.value)}" required>
-                <label for="hours">Horas trabajadas por el empleado:</label>
-                <input type="number" id="hours" name="hours" .value="${this.currentEmployee.hours}" @input="${e => this.updateEmployee('hours', e.target.value)}" required>
-            </div>
-            <div class="buttons">
-                <button type="button" @click="${this.addEmployee}">Agregar empleado</button>
-            </div>
-            </div>
-            <div class="section">
-            <h2>Beneficios y Prestaciones</h2>
-            <label for="benefits">Monto total de beneficios y prestaciones:</label>
-            <input type="number" id="benefits" name="benefits" .value="${this.benefits}" @input="${e => this.updateBenefits(e.target.value)}" required>
-            </div>
-            <div class="section">
-            <h2>Costos Indirectos</h2>
-            <label for="indirectCosts">Monto total de costos indirectos:</label>
-            <input type="number" id="indirectCosts" name="indirectCosts" .value="${this.indirectCosts}" @input="${e => this.updateIndirectCosts(e.target.value)}" required>
-            </div>
-            <div class="buttons">
-            <button type="submit">Calcular</button>
-            </div>
-        </form>
-        <h2>Salario Base Total: <span>${this.totalSalary.toLocaleString()}</span></h2>
-    </div>
+      <h2>Calcular Costo de Mano de Obra</h2>
+      <form @submit="${this.handleSubmit}">
+        <label>Salario por Hora</label>
+        <input type="number" name="hourlyWage" .value="${this.currentEmployee.hourlyWage}" @input="${this.updateEmployee}" required>
+
+        <label>Número de Horas Trabajadas</label>
+        <input type="number" name="hoursWorked" .value="${this.currentEmployee.hoursWorked}" @input="${this.updateEmployee}" required>
+
+        <label>Beneficios</label>
+        <input type="number" name="benefits" .value="${this.currentEmployee.benefits}" @input="${this.updateEmployee}">
+
+        <button type="button" @click="${this.addEmployee}">Calcular</button>
+      </form>
+      <p>Total Costo de Mano de Obra: ${this.totalCost.toFixed(2)}</p>
     `;
-}
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    this.addEmployee();
+  }
 }
 
 customElements.define('employee-form', EmployeeForm);
+
 
 
 
