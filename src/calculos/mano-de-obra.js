@@ -1,5 +1,6 @@
 let employees = {};
 let benefits = {};
+let indirect = {};
 let totalSalary;
 
 function loadFromLocalStorage() {
@@ -9,7 +10,7 @@ function loadFromLocalStorage() {
     if (storedEmployees) {
     employees = storedEmployees;
     benefits = storedBenefits;
-    this.calculateSalary();
+    indirect = storedIndirect;
     }
 }
 
@@ -48,6 +49,11 @@ function addIndirectPrices () {
     return totalIndirect;
 }
 
-function costWorkingLabour (indirect, salary) {
+function costWorkingLabour (inputSalary, inputIndirec) {
+    if (inputIndirec && inputSalary) {
+        return (inputIndirec + inputSalary)
+    }
+    let indirect = addIndirectPrices();
+    let salary = calculateSalary(); 
     return (indirect + salary);
 } 
