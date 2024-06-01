@@ -1,7 +1,7 @@
 import { LitElement, css, html } from 'lit'
 import './components/costo-mano-obra.js'; // Asegúrate de tener la ruta correcta
 import './components/materia-prima.js';
-import './components/info-mano-de-obra.js';
+import './components/info-employees.js';
 import './components/info-material.js';
 
 // formulario de registro de empleados
@@ -51,16 +51,17 @@ document.getElementById('showMaterialsTable').addEventListener('click', function
 // tabla mano de obra
 
 function mostrarTablaManoObra(){
-  const employeeTable= document.createElement('labor-cost-table');
+  const employeeTable = document.createElement('info-table');
 
   document.getElementById('main').innerHTML='';
   document.getElementById('main').appendChild(employeeTable);
 }
 
-document.getElementById('showEmployeeTable').addEventListener('click', function(event) {
+document.getElementById('showEmployee').addEventListener('click', function(event) {
   event.preventDefault();
-  mostrarTablaManoObra();
+  mostrarTablaManoObra()
 })
+
 
 
 window.customElements.define('my-element', MyElement)
