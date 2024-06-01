@@ -2,13 +2,14 @@ import { LitElement, html, css } from 'lit';
 
 class EmployeeForm extends LitElement {
   static styles = css`
-    :host {
+    .formulario {
+      margin-top:220px;
+      margin-left:500px;
       display: block;
       font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 0 auto;
+      width: 800px;
       padding: 20px;
-      background-color: #f9f9f9;
+      background-color: #c2fdefe8;
       border-radius: 10px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
@@ -33,12 +34,14 @@ class EmployeeForm extends LitElement {
       border-radius: 5px;
     }
     button {
-      background-color: #007BFF;
+      background-color: rgb(235, 127, 127);
       color: #fff;
       cursor: pointer;
+      width:200px;
     }
     button:hover {
       background-color: #0056b3;
+      font-size:20px
     }
   `;
 
@@ -81,7 +84,8 @@ class EmployeeForm extends LitElement {
 
   render() {
     return html`
-      <h2>Calcular Costo de Mano de Obra</h2>
+    <div class="formulario">
+      <h2>Agregar Costo de Mano de Obra</h2>
       <form @submit="${this.handleSubmit}">
         <label>Salario por Hora</label>
         <input type="number" name="hourlyWage" .value="${this.currentEmployee.hourlyWage}" @input="${this.updateEmployee}" required>
@@ -92,10 +96,11 @@ class EmployeeForm extends LitElement {
         <label>Beneficios</label>
         <input type="number" name="benefits" .value="${this.currentEmployee.benefits}" @input="${this.updateEmployee}">
 
-        <button type="button" @click="${this.addEmployee}">Calcular</button>
+        <button type="button" @click="${this.addEmployee}">Registrar</button>
       </form>
-      <p>Total Costo de Mano de Obra: ${this.totalCost.toFixed(2)}</p>
-    `;
+      
+    </div>
+      `;
   }
 
   handleSubmit(event) {

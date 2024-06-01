@@ -17,17 +17,17 @@
           <label for="menu-bar">Gestor</label>
           <nav class="navbar">
             <ul>
-              <li><a href="#">Home</a></li>
+              <li><a href="#primeraPagina">Home</a></li>
               <li><a href="#" >Materia prima</a>
                 <ul>
                   <li><a href="#" id="showMaterialsForm">Registrar</a></li>
-                  <li><a href="#">Ver informe</a></li>
+                  <li><a href="#" id="showMaterialsTable">Ver informe</a></li>
                 </ul>
               </li>
               <li><a href="#">Mano de obra</a>
                 <ul>
                   <li><a href="#" id="showEmployeeForm">Registrar</a></li>
-                  <li><a href="#">Ver informe</a></li>
+                  <li><a href="#" id="showEmployee">Ver informe</a></li>
                 </ul>
               </li>
               </li>
@@ -44,6 +44,8 @@
         </header>
 
         <div id="main">
+          
+          <div id="primeraPagina">
           <h2>¡Bienvenido a Gestor de informes de  ®Confecciones Pepita!</h2>
           <h3>Aquí podrás calcular y visualizar:</h3>
           <p></p>
@@ -69,22 +71,13 @@
         <h4>Dirígete a nuestro menú</h4>
         <img src="public/images/hacer-clic.png" class="click">
       </div>
-
+      </div>
       </div>
 
-      <employee-form>
-
-      </employee-form>
-  
-      <material-form>
-  
-      </material-form>
+      
       <labor-cost-table>
   
       </labor-cost-table>
-      <material-table>
-  
-      </material-table>
       
   </body>
 </html>

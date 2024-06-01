@@ -2,11 +2,13 @@ import { LitElement, html, css } from 'lit';
 
 class MaterialTable extends LitElement {
   static styles = css`
-    :host {
+    .tabla {
+      margin-top:250px;
+      margin-left:300px;
+  
       display: block;
       font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 0 auto;
+      max-width: 1200px;
       padding: 20px;
       background-color: #f9f9f9;
       border-radius: 10px;
@@ -21,10 +23,11 @@ class MaterialTable extends LitElement {
       padding: 10px;
       border: 1px solid #ccc;
       text-align: left;
+      
     }
     th {
-      background-color: #007BFF;
-      color: #fff;
+      background-color: #c2fdefe8 ;
+      color: grey;
     }
   `;
 
@@ -35,6 +38,7 @@ class MaterialTable extends LitElement {
 
   render() {
     return html`
+    <div class="tabla">
       <h2>Materias Primas</h2>
       <table>
         <tr>
@@ -66,6 +70,7 @@ class MaterialTable extends LitElement {
           </tr>
         `)}
       </table>
+    </div>
     `;
   }
 }

@@ -1,8 +1,10 @@
 import { LitElement, css, html } from 'lit'
 import './components/costo-mano-obra.js'; // Asegúrate de tener la ruta correcta
 import './components/materia-prima.js';
+import './components/info-mano-de-obra.js';
+import './components/info-material.js';
 
-// Función para mostrar el formulario de registro de empleados
+// formulario de registro de empleados
 function mostrarFormularioEmpleado() {
   // Crea una instancia del componente EmployeeForm
   const employeeForm = document.createElement('employee-form');
@@ -12,26 +14,53 @@ function mostrarFormularioEmpleado() {
   document.getElementById('main').appendChild(employeeForm);
 }
 
-// Función para mostrar el formulario de registro de materia prima
+document.getElementById('showEmployeeForm').addEventListener('click', function(event) {
+  event.preventDefault();
+  mostrarFormularioEmpleado();
+});
+
+
+// formulario de registro de materia prima
 function mostrarFormularioMateriaPrima() {
-  // Crea una instancia del componente MaterialForm
   const materialForm = document.createElement('material-form');
   
-  // Reemplaza el contenido del elemento 'main' con el formulario de materia prima
   document.getElementById('main').innerHTML = '';
   document.getElementById('main').appendChild(materialForm);
 }
 
-// Añadir event listeners a los enlaces de Materia prima y Mano de obra
 document.getElementById('showMaterialsForm').addEventListener('click', function(event) {
   event.preventDefault();
   mostrarFormularioMateriaPrima();
 });
 
-document.getElementById('showEmployeeForm').addEventListener('click', function(event) {
+
+// tabla materia prima
+function mostrarTablaMateriaPrima(){
+  const materialTable = document.createElement('material-table');
+
+  document.getElementById('main').innerHTML='';
+  document.getElementById('main').appendChild(materialTable);
+}
+
+document.getElementById('showMaterialsTable').addEventListener('click', function(event) {
   event.preventDefault();
-  mostrarFormularioEmpleado();
-});
+  mostrarTablaMateriaPrima()
+})
+
+
+// tabla mano de obra
+
+function mostrarTablaManoObra(){
+  const employeeTable= document.createElement('labor-cost-table');
+
+  document.getElementById('main').innerHTML='';
+  document.getElementById('main').appendChild(employeeTable);
+}
+
+document.getElementById('showEmployeeTable').addEventListener('click', function(event) {
+  event.preventDefault();
+  mostrarTablaManoObra();
+})
 
 
 window.customElements.define('my-element', MyElement)

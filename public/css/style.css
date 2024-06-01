@@ -233,5 +233,7 @@ header label {
     }
     .cuadros p{
         margin-top: 100px;
+        background-color: rgb(235, 127, 127);
+       ;
     }
 }

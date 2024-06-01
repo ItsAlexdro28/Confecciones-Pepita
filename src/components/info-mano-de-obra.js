@@ -2,7 +2,10 @@ import { LitElement, html, css } from 'lit';
 
 class LaborCostTable extends LitElement {
   static styles = css`
-    :host {
+    .tabla {
+      margin-top:400px;
+      margin-left:400px;
+      
       display: block;
       font-family: Arial, sans-serif;
       max-width: 800px;
@@ -23,8 +26,8 @@ class LaborCostTable extends LitElement {
       text-align: left;
     }
     th {
-      background-color: #007BFF;
-      color: #fff;
+      background-color: #c2fdefe8 ;
+      color: grey;
     }
   `;
 
@@ -35,6 +38,7 @@ class LaborCostTable extends LitElement {
 
   render() {
     return html`
+    <div class ="tabla">
       <h2>Costos de Mano de Obra</h2>
       <table>
         <tr>
@@ -56,7 +60,9 @@ class LaborCostTable extends LitElement {
           </tr>
         `)}
       </table>
+      </div>
     `;
+    
   }
 }
 

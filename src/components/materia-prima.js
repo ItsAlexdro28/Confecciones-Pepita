@@ -2,16 +2,18 @@ import { LitElement, html, css } from 'lit';
 
 class MaterialForm extends LitElement {
   static styles = css`
-    :host {
+    .formulario {
+      position:absolute;
+      top:220px;
+      left:320px;
       display: block;
       font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 0 auto;
+      width: 1200px;
       padding: 20px;
-      background-color: #f9f9f9;
+      background-color: #c2fdefe8;
       border-radius: 10px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
+    }.
     h2 {
       text-align: center;
       color: #333;
@@ -33,12 +35,14 @@ class MaterialForm extends LitElement {
       border-radius: 5px;
     }
     button {
-      background-color: #007BFF;
+      background-color: rgb(235, 127, 127);
       color: #fff;
       cursor: pointer;
+      width:200px
     }
     button:hover {
       background-color: #0056b3;
+      font-size:20px;
     }
   `;
 
@@ -61,6 +65,7 @@ class MaterialForm extends LitElement {
 
   render() {
     return html`
+    <div class="formulario">
       <h2>Registrar y Gestionar Materia Prima</h2>
       <form @submit="${this.handleSubmit}">
         <label>Nombre</label>
@@ -102,6 +107,7 @@ class MaterialForm extends LitElement {
 
         <button type="button" @click="${this.addMaterial}">Agregar Material</button>
       </form>
+      </div>
     `;
   }
 
