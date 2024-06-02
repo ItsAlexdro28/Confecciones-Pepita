@@ -1,6 +1,7 @@
 import { LitElement, css, html } from 'lit'
 import './components/costo-mano-obra.js'; // Asegúrate de tener la ruta correcta
 import './components/materia-prima.js';
+import './components/costo-lote.js';
 import './components/info-employees.js';
 import './components/info-material.js';
 
@@ -33,6 +34,19 @@ document.getElementById('showMaterialsForm').addEventListener('click', function(
   mostrarFormularioMateriaPrima();
 });
 
+// formulario registro de lote
+
+function mostrarFormularioLotes(){
+  const batchForm = document.createElement('batch-form');
+
+  document.getElementById('main').innerHTML='';
+  document.getElementById('main').appendChild(batchForm);
+}
+
+document.getElementById('showBatchForm').addEventListener('click', function(event) {
+  event.preventDefault();
+  mostrarFormularioLotes();
+})
 
 // tabla materia prima
 function mostrarTablaMateriaPrima(){
