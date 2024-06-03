@@ -86,11 +86,8 @@ class BatchForm extends LitElement {
         this.priceMaterialCosts += quantity * price;
     }
     this.priceWorkers = directHourlyWage * directWorkingHours;
-    //if (costWorkingLabour) {
-    //  this.indirectRate = costWorkingLabour() / assignationBasis;
-    //}
-    //valor grande mientras unimos ramas
-    this.indirectRate = 9999999999 / Number(assignationBasis);
+    let totalIndirect = JSON.parse(localStorage.getItem('totalIndirect'));
+    this.indirectRate = totalIndirect / Number(assignationBasis);
     this.priceIndirectBatch = this.indirectRate * Number(finishedProducts);
     this.totalBatchPrice = this.priceMaterialCosts + this.priceWorkers + this.priceIndirectBatch;
     return { 'priceMaterialCosts': this.priceMaterialCosts, 'priceWorkers':this.priceWorkers, 'indirectRate': this.indirectRate, 'priceIndirectBatch': this.priceIndirectBatch, 'totalBatchPrice': this.totalBatchPrice}; 
