@@ -51,11 +51,18 @@ class BatchForm extends LitElement {
         width:800px
       }
     }
-    @media(max-width:999px){
+    @media(min-width:620px) and(max-width:999px){
       .formulario {
         margin-top:120px;
         margin-left:50px;
         width:600px;
+      }
+    }
+    @media(max-width:619px){
+      .formulario {
+        margin-top:120px;
+        margin-left:10px;
+        width:370px;
       }
     }
   

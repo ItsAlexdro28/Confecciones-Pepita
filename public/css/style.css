@@ -13,6 +13,7 @@ body{
 
 header{
     position: fixed;
+    z-index: 1000;
     top:0;
     left: 0;
     right: 20px;
@@ -113,75 +114,6 @@ header label {
     right: 40%;
 }
 
-/* FORMULARIOS */
-.formulario {
-     display: block;
-     font-family: Arial, sans-serif;
-     max-width: 1000px;
-     margin: 0 auto;
-     padding: 20px;
-     background-color: #f9f9f9;
-     border-radius: 10px;
-     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-     margin-top: 220px;
-     }
-     h1 {
-     text-align: center;
-     color: #333;
-     
-    
-     }
-     .section {
-     margin-bottom: 20px;
-     }
-     .formulario{
-        display: flex;
-        flex-direction: column;
-        margin-left: 550px
-     }
-     .section h2 {
-     margin-top: 0;
-     }
-     .employee {
-     display: flex;
-     flex-direction: column;
-     margin-bottom: 15px;
-     }
-     label {
-     font-weight: bold;
-     margin-top: 10px;
-     color: black;
-     }
-     input[type="number"] {
-     padding: 10px;
-     border: 1px solid #ccc;
-     border-radius: 5px;
-     font-size: 1em;
-     margin-top: 5px;
-     /* width: calc(100% - 22px); */
-     }
-     button {
-     background-color: #007BFF;
-     color: white;
-     padding: 10px 15px;
-     border: none;
-     border-radius: 5px;
-     cursor: pointer;
-     font-size: 1em;
-     margin-top: 10px;
-     }
-     button:hover {
-     background-color: #0056b3;
-     }
-     .buttons {
-     display: flex;
-     justify-content: space-between;
-     }
-     h2 {
-     text-align: center;
-     color: #333;
-     margin-top: 20px;
-     }
 
     /* FORMULARIO MATERIALES*/
 
