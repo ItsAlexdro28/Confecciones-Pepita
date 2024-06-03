@@ -16,7 +16,7 @@ class MateriaPrima extends LitElement {
     }
     .formulario2 {
       margin-top: 100px;
-      margin-left: 200px;
+      margin-left: 20px;
       display: block;
       font-family: Arial, sans-serif;
       width: 600px;
@@ -62,12 +62,12 @@ class MateriaPrima extends LitElement {
       .formulario {
         margin-top:180px;
         margin-left:250px;
-        width:800px
+        width:800px;
       }
       .formulario2 {
-        margin-margin-top:50px;
-        margin-margin-left:20px;
-        width:700px
+        margin-top:50px;
+        margin-left:20px;
+        width:700px;
       }
     }
     @media(min-width:620px) and (max-width:999px){

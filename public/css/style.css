@@ -16,7 +16,7 @@ header{
     z-index: 1000;
     top:0;
     left: 0;
-    right: 20px;
+    right: 0;
     background-color: #2D836D;
     justify-content: space-between;
     padding: 20px 7px;
@@ -117,7 +117,7 @@ header label {
 
     /* FORMULARIO MATERIALES*/
 
-@media(max-width:991px){
+@media(min-width:620px)and(max-width:991px){
     header {
         padding: 20px;
     }
@@ -191,5 +191,67 @@ header label {
     }
     .click{
         width: 40px;
+    }
+}
+@media(max-width:618px){
+    header {
+        padding: 20px;
+    }
+    header label {
+        display: initial;
+    }
+    header .navbar{
+        position: absolute;
+        top:100%;
+        left:0;
+        right: 0;
+        background-color: #2D836D;
+        border-top: 1px solid rgb(100, 98, 98);
+        display: none;
+    }
+    header .navbar ul li {
+        width: 100%;
+    }
+    header .navbar ul li ul {
+        
+        position: relative;
+        width: 100%;
+        transition: all 0.3s ease; 
+    }
+    header .navbar ul li ul li{
+        background-color: #e9b4af;
+        height: 50px;
+    }
+    header .navbar ul li ul li ul{
+        width: 100%;
+        left: 0;
+    }
+    #menu-bar {
+        display: inline-block; /* Muestra el checkbox solo en dispositivos móviles */
+    }
+    #menu-bar:checked ~ .navbar{
+        display: initial;
+    }
+    #main h2{
+        margin-top:100px;
+    }
+    .cuadros-container{
+        flex-direction: column;
+        gap:50px
+    }
+    .cuadros{
+        margin-left: 50px;
+        display: flex;
+        gap:10px;
+    }
+    .cuadros p{
+        margin-top: 50px;
+        margin-left: 0;
+
+    }
+    .cuadros-img{
+        width: 220px;
+        height: 150px;
+        margin-left: 0;
     }
 }
