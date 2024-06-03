@@ -60,9 +60,20 @@ class CostosIndirectos extends LitElement {
   handleSubmit(e) {
     e.preventDefault();
     localStorage.setItem('indirectCosts', JSON.stringify(this.indirectCosts));
+    let sum = this.sumIndirectCosts(this.indirectCosts);
+    localStorage.setItem('totalIndirect', JSON.stringify(sum));
     alert('Los costos indirectos han sido guardados.');
   }
 
+  sumIndirectCosts(indirectCosts) {
+      let total = 0;
+      for (let key in indirectCosts) {
+          if (indirectCosts.hasOwnProperty(key)) {
+              total += parseInt(indirectCosts[key].value, 10);
+          }
+      }
+      return total;
+  }
   render() {
     return html`
     <div class="formulario">
