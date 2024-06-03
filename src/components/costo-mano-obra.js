@@ -48,8 +48,15 @@ class ManoDeObra extends LitElement {
         margin-top:180px;
         margin-left:250px;
         width:800px
+      }
     }
-  }
+    @media(min-width:620px) and (max-width:999px){
+      .formulario {
+        margin-top:120px;
+        margin-left:50px;
+        width:600px;
+      }
+    }
   `;
 
   constructor() {
