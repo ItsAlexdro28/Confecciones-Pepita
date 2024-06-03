@@ -9,6 +9,7 @@ import './components/info-enficiencia.js';
 import './components/info-lote.js';
 import './components/costos-indirectos.js';
 import './components/tabla-costos-indirectos.js';
+import './components/tabla-mano-obra.js';
 // formulario de registro de empleados
 function mostrarFormularioEmpleado() {
   // Crea una instancia del componente EmployeeForm
