@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit';
 
-class LaborCostTable extends LitElement {
+class TablaManoDeObra extends LitElement {
   static styles = css`
     :host {
       display: block;
@@ -60,4 +60,4 @@ class LaborCostTable extends LitElement {
   }
 }
 
-customElements.define('labor-cost-table', LaborCostTable);
+customElements.define('tabla-mano-obra', TablaManoDeObra);

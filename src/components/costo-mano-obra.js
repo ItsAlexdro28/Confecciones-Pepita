@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit';
 
-class EmployeeForm extends LitElement {
+class ManoDeObra extends LitElement {
   static styles = css`
     :host {
       display: block;
@@ -104,7 +104,7 @@ class EmployeeForm extends LitElement {
   }
 }
 
-customElements.define('employee-form', EmployeeForm);
+customElements.define('mano-obra-form', ManoDeObra);
 
 
 

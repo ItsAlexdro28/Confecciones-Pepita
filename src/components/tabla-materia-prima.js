@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit';
 
-class MaterialTable extends LitElement {
+class TablaMateriaPrima extends LitElement {
   static styles = css`
     :host {
       display: block;
@@ -70,5 +70,5 @@ class MaterialTable extends LitElement {
   }
 }
 
-customElements.define('material-table', MaterialTable);
+customElements.define('tabla-materia-prima', TablaMateriaPrima);
 

@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit';
 
-class MaterialForm extends LitElement {
+class MateriaPrima extends LitElement {
   static styles = css`
     :host {
       display: block;
@@ -111,6 +111,6 @@ class MaterialForm extends LitElement {
   }
 }
 
-customElements.define('material-form', MaterialForm);
+customElements.define('materia-prima-form', MateriaPrima);
 
 
