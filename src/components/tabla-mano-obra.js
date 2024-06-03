@@ -2,7 +2,9 @@ import { LitElement, html, css } from 'lit';
 
 class TablaManoDeObra extends LitElement {
   static styles = css`
-    :host {
+    .tabla {
+      margin-top:0;
+      margin-LEFT:50px;
       display: block;
       font-family: Arial, sans-serif;
       max-width: 800px;
@@ -42,6 +44,7 @@ class TablaManoDeObra extends LitElement {
 
   render() {
     return html`
+    <div class="tabla">
       <h2>Costos de Mano de Obra</h2>
       <table>
         <tr>
@@ -63,6 +66,7 @@ class TablaManoDeObra extends LitElement {
           </tr>
         `)}
       </table>
+      <div>
     `;
   }
 }

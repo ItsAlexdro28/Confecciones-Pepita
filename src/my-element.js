@@ -10,6 +10,8 @@ import './components/info-lote.js';
 import './components/costos-indirectos.js';
 import './components/tabla-costos-indirectos.js';
 import './components/tabla-mano-obra.js';
+
+
 // formulario de registro de empleados
 function mostrarFormularioEmpleado() {
   // Crea una instancia del componente EmployeeForm
@@ -112,7 +114,7 @@ document.getElementById('showEficiency').addEventListener('click', function(even
 // tabla lote
 
 function mostrarTablaLotes(){
-  const batchTable = document.createElement('batch-table');
+  const batchTable = document.createElement('batche-table');
 
   document.getElementById('main').innerHTML='';
   document.getElementById('main').appendChild(batchTable);

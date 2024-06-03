@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit';
 
-class batcheTable extends LitElement {
+class BatcheTable extends LitElement {
   static styles = css`
     .tabla {
       margin-top:250px;
@@ -36,6 +36,19 @@ class batcheTable extends LitElement {
         width:1200px
     }
   }
+    @media(min-width:620px) and (max-width:999px){
+      .tabla {
+        margin-top:120px;
+        margin-left:20px;
+        width:600px;
+        
+      }
+      table{
+        display:flex;
+        flex-direction:column;
+      }
+    }
+ 
   `;
 
   constructor() {
@@ -82,5 +95,7 @@ class batcheTable extends LitElement {
   }
 }
 
-customElements.define('batch-table', batcheTable);
+customElements.define('batche-table', BatcheTable);
+
+
 
