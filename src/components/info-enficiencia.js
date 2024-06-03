@@ -183,11 +183,11 @@ class eficiencieTable extends LitElement {
             </tr>
             <tr>
               <th>Producción efectiva</th>
-              <td>${eficiencie.effectiveProduction}</td>
+              <td>${eficiencie.efectiveProduction}</td>
             </tr>
             <tr>
               <th>Eficiencia Operativa</th>
-              <td>${eficiencie.operativeEfficiency}</td>
+              <td>${eficiencie.operativeEficiency}</td>
             </tr>
           `)}
         </table>
