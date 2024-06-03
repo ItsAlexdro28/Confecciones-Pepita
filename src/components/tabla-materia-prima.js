@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit';
 
-class MaterialTable extends LitElement {
+class TablaMateriaPrima extends LitElement {
   static styles = css`
     .tabla {
       margin-top:250px;
@@ -75,5 +75,5 @@ class MaterialTable extends LitElement {
   }
 }
 
-customElements.define('material-table', MaterialTable);
+customElements.define('tabla-materia-prima', TablaMateriaPrima);
 

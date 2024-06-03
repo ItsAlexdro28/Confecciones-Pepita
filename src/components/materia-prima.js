@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit';
 
-class MaterialForm extends LitElement {
+class MateriaPrima extends LitElement {
   static styles = css`
     .formulario {
       position: absolute;
@@ -178,7 +178,7 @@ class MaterialForm extends LitElement {
   }
 }
 
-customElements.define('material-form', MaterialForm);
+customElements.define('materia-prima-form', MateriaPrima);
 
 
 // import { LitElement, html, css } from 'lit';

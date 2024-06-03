@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit';
 
-class EmployeeForm extends LitElement {
+class ManoDeObra extends LitElement {
   static styles = css`
     .formulario {
       margin-top:220px;
@@ -109,7 +109,7 @@ class EmployeeForm extends LitElement {
   }
 }
 
-customElements.define('employee-form', EmployeeForm);
+customElements.define('mano-obra-form', ManoDeObra);
 
 
 
