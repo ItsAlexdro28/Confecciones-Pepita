@@ -237,3 +237,23 @@ header label {
        ;
     }
 }
+
+
+@media(min-width:1000px) and (max-width:1400px) {
+    #main h2{
+        margin-top: 160px;
+    }
+    .cuadros-container{
+        margin-top: 70px;
+    }
+    .cuadros-img{
+        width: 300px;
+        height: 200px;
+    }
+    #main h4{
+        margin-top: 20px;
+    }
+    .click{
+        width: 40px;
+    }
+}

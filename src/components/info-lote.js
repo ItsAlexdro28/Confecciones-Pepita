@@ -8,7 +8,7 @@ class batcheTable extends LitElement {
   
       display: block;
       font-family: Arial, sans-serif;
-      max-width: 1200px;
+      max-width: 1500px;
       padding: 20px;
       background-color: #f9f9f9;
       border-radius: 10px;
@@ -29,6 +29,13 @@ class batcheTable extends LitElement {
       background-color: #c2fdefe8 ;
       color: grey;
     }
+    @media(min-width:1000px) and (max-width:1400px){
+      .tabla {
+        margin-top:180px;
+        margin-left:50px;
+        width:1200px
+    }
+  }
   `;
 
   constructor() {

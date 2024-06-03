@@ -26,6 +26,13 @@ class TablaManoDeObra extends LitElement {
       background-color: #007BFF;
       color: #fff;
     }
+    @media(min-width:1000px) and (max-width:1400px){
+      .tabla {
+        margin-top:180px;
+        margin-left:250px;
+        width:800px
+    }
+  }
   `;
 
   constructor() {

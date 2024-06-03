@@ -29,6 +29,13 @@ class TablaMateriaPrima extends LitElement {
       background-color: #c2fdefe8 ;
       color: grey;
     }
+    @media(min-width:1000px) and (max-width:1400px){
+      .tabla {
+        margin-top:180px;
+        margin-left:50px;
+        width:1200px
+    }
+  }
   `;
 
   constructor() {
