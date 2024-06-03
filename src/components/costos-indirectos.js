@@ -2,16 +2,18 @@ import { LitElement, html, css } from 'lit';
 
 class CostosIndirectos extends LitElement {
   static styles = css`
-    :host {
-      display: block;
-      font-family: Arial, sans-serif;
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: #f9f9f9;
-      border-radius: 10px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
+  .formulario {
+    position: absolute;
+    top: 220px;
+    left: 320px;
+    display: block;
+    font-family: Arial, sans-serif;
+    width: 1200px;
+    padding: 20px;
+    background-color: #c2fdefe8;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
     form {
       display: flex;
       flex-direction: column;
@@ -63,7 +65,9 @@ class CostosIndirectos extends LitElement {
 
   render() {
     return html`
+    <div class="formulario">
       <h2>Formulario de Costos Indirectos</h2>
+      <p class="warning">Completa unicamente los campos necesarios</p>
       <form @submit="${this.handleSubmit}">
         ${Object.keys(this.indirectCosts).map(category => html`
           <label for="${category}-description">${this.getLabel(category)} Descripción:</label>
@@ -74,6 +78,7 @@ class CostosIndirectos extends LitElement {
         `)}
         <button type="submit">Guardar Costos Indirectos</button>
       </form>
+      </div>
     `;
   }
 

@@ -1,17 +1,18 @@
 import { LitElement, css, html } from 'lit'
-import './components/costo-mano-obra.js'; // Asegúrate de tener la ruta correcta
+import './components/costo-mano-obra.js'; 
 import './components/materia-prima.js';
 import './components/costo-lote.js';
 import './components/eficiencia.js';
 import './components/info-employees.js';
-import './components/info-material.js';
+import './components/tabla-materia-prima.js';
 import './components/info-enficiencia.js';
 import './components/info-lote.js';
-
+import './components/costos-indirectos.js';
+import './components/tabla-costos-indirectos.js';
 // formulario de registro de empleados
 function mostrarFormularioEmpleado() {
   // Crea una instancia del componente EmployeeForm
-  const employeeForm = document.createElement('employee-form');
+  const employeeForm = document.createElement('mano-obra-form');
   
   // Reemplaza el contenido del elemento 'main' con el formulario de empleado
   document.getElementById('main').innerHTML = '';
@@ -26,7 +27,7 @@ document.getElementById('showEmployeeForm').addEventListener('click', function(e
 
 // formulario de registro de materia prima
 function mostrarFormularioMateriaPrima() {
-  const materialForm = document.createElement('material-form');
+  const materialForm = document.createElement('materia-prima-form');
   
   document.getElementById('main').innerHTML = '';
   document.getElementById('main').appendChild(materialForm);
@@ -67,7 +68,7 @@ document.getElementById('showEficiencyForm').addEventListener('click', function(
 
 // tabla materia prima
 function mostrarTablaMateriaPrima(){
-  const materialTable = document.createElement('material-table');
+  const materialTable = document.createElement('tabla-materia-prima');
 
   document.getElementById('main').innerHTML='';
   document.getElementById('main').appendChild(materialTable);
@@ -82,7 +83,7 @@ document.getElementById('showMaterialsTable').addEventListener('click', function
 // tabla mano de obra
 
 function mostrarTablaManoObra(){
-  const employeeTable = document.createElement('info-table');
+  const employeeTable = document.createElement('tabla-mano-obra');
 
   document.getElementById('main').innerHTML='';
   document.getElementById('main').appendChild(employeeTable);
@@ -121,4 +122,33 @@ document.getElementById('showBatch').addEventListener('click', function(event) {
   mostrarTablaLotes()
 })
 
+// formulario registro de costos indirectos
+
+function mostrarFormularioCostosIndirectos(){
+  const costsForm = document.createElement('costos-indirectos-form');
+
+  document.getElementById('main').innerHTML='';
+  document.getElementById('main').appendChild(costsForm);
+}
+
+document.getElementById('showCostsForm').addEventListener('click', function(event) {
+  event.preventDefault();
+  mostrarFormularioCostosIndirectos();
+})
+
+// tabla costos indirectos
+function mostrarTablaCostosIndirectos(){
+  const costsTable = document.createElement('tabla-costos-indirectos');
+
+  document.getElementById('main').innerHTML='';
+  document.getElementById('main').appendChild(costsTable);
+}
+
+document.getElementById('showCostsTable').addEventListener('click', function(event) {
+  event.preventDefault();
+  mostrarTablaCostosIndirectos()
+})
+
+
 window.customElements.define('my-element', MyElement)
+
