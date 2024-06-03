@@ -30,7 +30,7 @@ class TablaCostosIndirectos extends LitElement {
 
   constructor() {
     super();
-    this.indirectCosts = JSON.parse(localStorage.getItem('indirectCosts')) || {};
+    this.indirectCosts = JSON.parse(localStorage.getItem('indirectCosts')) || [];
   }
 
   render() {
@@ -39,39 +39,24 @@ class TablaCostosIndirectos extends LitElement {
       <table>
         <thead>
           <tr>
-            <th>Concepto</th>
+            <th>Nombre</th>
             <th>Descripción</th>
             <th>Valor (USD)</th>
           </tr>
         </thead>
         <tbody>
-          ${Object.keys(this.indirectCosts).map(category => html`
+          ${this.indirectCosts.map(cost => html`
             <tr>
-              <td>${this.getLabel(category)}</td>
-              <td>${this.indirectCosts[category].description}</td>
-              <td>${this.indirectCosts[category].value}</td>
+              <td>${cost.name}</td>
+              <td>${cost.description}</td>
+              <td>${cost.value}</td>
             </tr>
           `)}
         </tbody>
       </table>
     `;
   }
-
-  getLabel(category) {
-    const labels = {
-      rent: 'Alquiler del Local',
-      utilities: 'Servicios Públicos (Electricidad, Agua, Gas)',
-      maintenance: 'Mantenimiento de Maquinaria',
-      ppe: 'Equipo de Protección Personal (EPP)',
-      training: 'Formación y Capacitación de Empleados',
-      insurance: 'Seguros (Propiedad, Responsabilidad Civil, Salud)',
-      officeExpenses: 'Gastos de Oficina',
-      transport: 'Transporte y Logística',
-      licenses: 'Costos de Licencias y Permisos',
-      cleaning: 'Servicios de Limpieza',
-    };
-    return labels[category] || category;
-  }
 }
 
 customElements.define('tabla-costos-indirectos', TablaCostosIndirectos);
+
