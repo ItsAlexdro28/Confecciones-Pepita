@@ -2,8 +2,11 @@ import { LitElement, css, html } from 'lit'
 import './components/costo-mano-obra.js'; // Asegúrate de tener la ruta correcta
 import './components/materia-prima.js';
 import './components/costo-lote.js';
+import './components/eficiencia.js';
 import './components/info-employees.js';
 import './components/info-material.js';
+import './components/info-enficiencia.js';
+import './components/info-lote.js';
 
 // formulario de registro de empleados
 function mostrarFormularioEmpleado() {
@@ -48,6 +51,20 @@ document.getElementById('showBatchForm').addEventListener('click', function(even
   mostrarFormularioLotes();
 })
 
+// formulario registro de eficiencia
+
+function mostrarFormularioEficiencia(){
+  const batchForm = document.createElement('eficiency-form');
+
+  document.getElementById('main').innerHTML='';
+  document.getElementById('main').appendChild(batchForm);
+}
+
+document.getElementById('showEficiencyForm').addEventListener('click', function(event) {
+  event.preventDefault();
+  mostrarFormularioEficiencia();
+})
+
 // tabla materia prima
 function mostrarTablaMateriaPrima(){
   const materialTable = document.createElement('material-table');
@@ -76,6 +93,32 @@ document.getElementById('showEmployee').addEventListener('click', function(event
   mostrarTablaManoObra()
 })
 
+// tabla eficiencia
 
+function mostrarTablaEficiencia(){
+  const eficiencieTable = document.createElement('eficiencie-table');
+
+  document.getElementById('main').innerHTML='';
+  document.getElementById('main').appendChild(eficiencieTable);
+}
+
+document.getElementById('showEficiency').addEventListener('click', function(event) {
+  event.preventDefault();
+  mostrarTablaEficiencia()
+})
+
+// tabla lote
+
+function mostrarTablaLotes(){
+  const batchTable = document.createElement('batch-table');
+
+  document.getElementById('main').innerHTML='';
+  document.getElementById('main').appendChild(batchTable);
+}
+
+document.getElementById('showBatch').addEventListener('click', function(event) {
+  event.preventDefault();
+  mostrarTablaLotes()
+})
 
 window.customElements.define('my-element', MyElement)

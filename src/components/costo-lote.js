@@ -163,7 +163,7 @@ class BatchForm extends LitElement {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.addEmployee();
+    this.addBatch();
   }
 }
 
