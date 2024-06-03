@@ -61,7 +61,7 @@ header .navbar ul li ul li ul{
     top:0;
 }
 header .navbar ul li:hover > ul{
-    display: inline;
+    display: initial;
 }
 
 #menu-bar{
@@ -184,7 +184,7 @@ header label {
      }
 
     /* FORMULARIO MATERIALES*/
-    
+
 @media(max-width:991px){
     header {
         padding: 20px;
@@ -205,8 +205,10 @@ header label {
         width: 100%;
     }
     header .navbar ul li ul {
+        
         position: relative;
         width: 100%;
+        transition: all 0.3s ease; 
     }
     header .navbar ul li ul li{
         background-color: #e9b4af;
@@ -215,6 +217,9 @@ header label {
     header .navbar ul li ul li ul{
         width: 100%;
         left: 0;
+    }
+    #menu-bar {
+        display: inline-block; /* Muestra el checkbox solo en dispositivos móviles */
     }
     #menu-bar:checked ~ .navbar{
         display: initial;
@@ -235,6 +240,7 @@ header label {
         margin-top: 100px;
     }
 }
+
 
 
 @media(min-width:1100px) and (max-width:1400px) {
