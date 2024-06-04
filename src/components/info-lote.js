@@ -70,6 +70,13 @@ class BatcheTable extends LitElement {
         width:370px;
       }
     }
+    @media(max-width:500px){
+      .formulario {
+        margin-top:120px;
+        margin-left:0px;
+        width:320px;
+      }
+    }
   `;
 
   constructor() {

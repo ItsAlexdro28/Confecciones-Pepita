@@ -9,7 +9,26 @@
 body{
     min-height: 100vh;
     font-family: "Freeman", sans-serif;
+    background-image: url('../images/5\ pasos\ para\ ordenar\ el\ proceso\ de\ producción\ en\ tu\ empresa\ textil-02.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: fixed;
 }
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.7)
+    );
+    pointer-events: none; 
+    z-index: -1;
+  }
 th{
     width:500px;
 }
@@ -78,16 +97,22 @@ header label {
     display: none;
 
 }
+#primeraPagina{
+    background-image: none;
+}
+#primeraPagina::before{
+    background-image: none;
+}
 #primeraPagina h2{
     margin-top: 200px;
     text-align: center;
     font-size: 30px;
-    color:rgb(54, 54, 54)
+    color:rgb(255, 255, 255)
 }
 #primeraPagina h3{
     font-size: 25px;
     text-align: center;
-    color:rgb(54, 54, 54)
+    color:rgb(255, 255, 255)
 }
 .cuadros-container{
     display: flex;
@@ -98,25 +123,55 @@ header label {
     width: 350px;
     height: 250px;
     border-radius: 20px;
-    border: solid 2px #2D836D;
+    border: solid 2px #ffffff;
 }
 .cuadros p{
     font-size: 23px;
     text-align: center;
+    color: white;
 }
 #primeraPagina h4{
     margin-top: 100px;
     font-size: 25px;
     text-align: center;
-    color:rgb(54, 54, 54)
+    color:rgb(255, 255, 255)
 }
 .click{
     width: 50px;
     position: absolute;
     right: 40%;
 }
+button {
+    box-shadow: inset 000px 0px 0px 0px #e0c85e;
+  -webkit-transition: all 0.6s cubic-bezier(.9, .24, .40, 1);
+  transition: all 0.6s cubic-bezier(.9, .24, .40, 1)
+}
 
+button::before {
+    content: '';
+    width: 250px;
+    height: 0%;
+    display: block;
+    background: #d4759a;
+    position: absolute;
+    left: 0%;
+    opacity: 0;
+    top: 0;
+    z-index: -1;
+    -webkit-transition: height .4s cubic-bezier(0.9, 1, 0.32, 1), opacity .1s ease;
+    transition: height .4s cubic-bezier(0.9, 1, 0.32, 1), opacity .1s ease;
+  
+}
 
+button:hover::before {
+    opacity: 1;
+    height: 100%;
+}
+
+button:hover {
+    box-shadow: inset 00px 100px 0px 0px #6098FF;
+    color: #ecc375;
+}
 @media(min-width:620px)and(max-width:991px){
     header {
         padding: 20px;
@@ -143,7 +198,7 @@ header label {
         transition: all 0.3s ease; 
     }
     header .navbar ul li ul li{
-        background-color: #e9b4af;
+        background-color: #e9b4afb9;
         height: 50px;
     }
     header .navbar ul li ul li ul{

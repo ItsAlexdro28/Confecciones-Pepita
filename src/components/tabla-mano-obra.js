@@ -8,7 +8,7 @@ class TablaManoDeObra extends LitElement {
       left:250px;
       display: block;
       font-family: Arial, sans-serif;
-      max-width: 800px;
+      width: 1000px;
       margin: 0 auto;
       padding: 20px;
       background-color: #f9f9f9;
@@ -54,6 +54,13 @@ class TablaManoDeObra extends LitElement {
         top:100px;
         left:45px;
         width:370px;
+      }
+    }
+    @media(max-width:500px){
+      .formulario {
+        top:120px;
+        left:0px;
+        width:320px;
       }
     }
     

@@ -5,17 +5,17 @@ class TablaMateriaPrima extends LitElement {
   static styles = css`
     .tabla {
       margin-top: 250px;
-      margin-left: 400px;
+      margin-left: 320px;
       display: block;
       font-family: Arial, sans-serif;
-      max-width: 1200px;
+      width: 1200px;
       padding: 20px;
       background-color: #f9f9f9;
       border-radius: 10px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
     table {
-      width: 800px;
+      width: 100%;
       border-collapse: collapse;
       margin: 20px 0;
     }
@@ -63,6 +63,13 @@ class TablaMateriaPrima extends LitElement {
         margin-top:100px;
         margin-left:45px;
         width:370px;
+      }
+    }
+    @media(max-width:500px){
+      .formulario {
+        margin-top:120px;
+        margin-left:0px;
+        width:320px;
       }
     }
   `;

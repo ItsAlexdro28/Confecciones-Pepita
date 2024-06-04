@@ -66,6 +66,13 @@ class TablaCostosIndirectos extends LitElement {
         width:340px;
       }
     }
+    @media(max-width:500px){
+      .formulario {
+        margin-top:120px;
+        margin-left:0px;
+        width:320px;
+      }
+    }
   `;
 
   constructor() {
@@ -103,71 +110,3 @@ class TablaCostosIndirectos extends LitElement {
 customElements.define('tabla-costos-indirectos', TablaCostosIndirectos);
 
 
-
-// import { LitElement, html, css } from 'lit';
-
-// class TablaCostosIndirectos extends LitElement {
-//   static styles = css`
-//     .tabla {
-//       position:absolute;
-//       top:150px;
-//       left:150px;
-//       display: block;
-//       font-family: Arial, sans-serif;
-//       width: 800px;
-//       margin: 0 auto;
-//       padding: 20px;
-//       background-color: #f9f9f9;
-//       border-radius: 10px;
-//       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-//     }
-//     table {
-//       width: 100%;
-//       border-collapse: collapse;
-//       margin: 20px 0;
-//     }
-//     th, td {
-//       padding: 10px;
-//       border: 1px solid #ccc;
-//       text-align: left;
-//     }
-//     th {
-//       background-color: #c2fdefe8;
-//       color: grey;
-//     }
-//   `;
-
-//   constructor() {
-//     super();
-//     this.indirectCosts = JSON.parse(localStorage.getItem('indirectCosts')) || [];
-//   }
-
-//   render() {
-//     return html`
-//     <div class="tabla">
-//       <h2>Costos Indirectos</h2>
-//       <table>
-//         <thead>
-//           <tr>
-//             <th>Nombre</th>
-//             <th>Descripción</th>
-//             <th>Valor (COP)</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           ${this.indirectCosts.map(cost => html`
-//             <tr>
-//               <td>${cost.name}</td>
-//               <td>${cost.description}</td>
-//               <td>${cost.value}</td>
-//             </tr>
-//           `)}
-//         </tbody>
-//       </table>
-//     </div>
-//   `;
-//   }
-
-// }
-
-// customElements.define('tabla-costos-indirectos', TablaCostosIndirectos);

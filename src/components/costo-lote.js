@@ -35,14 +35,38 @@ class BatchForm extends LitElement {
       border-radius: 5px;
     }
     button {
-      background-color: rgb(235, 127, 127);
-      color: #fff;
-      cursor: pointer;
-      width:200px;
+      width: 250px;
+      box-shadow: inset 000px 0px 0px 0px #e28daa;
+    -webkit-transition: all 0.6s cubic-bezier(.9, .24, .40, 1);
+    transition: all 0.4s cubic-bezier(.9, .24, .40, 1);
+    background-color: #d4759a;;
     }
+  
+    button::before {
+        width: 250px;
+        height: 0%;
+        display: block;
+        background: yellow;
+        position: absolute;
+        left: 0%;
+        opacity: 0;
+        top: 0;
+        z-index: -1;
+        -webkit-transition: height .2s cubic-bezier(0.9, 1, 0.32, 1), opacity .5s ease;
+        transition: height .2s cubic-bezier(0.9, 1, 0.32, 1), opacity .5s ease;
+      
+    }
+    
+    button:hover::before {
+        opacity: 1;
+        background: yellow;
+        height: 100%;
+    }
+    
     button:hover {
-      background-color: #0056b3;
-      font-size:20px
+        box-shadow: inset 00px 100px 0px 0px #6098FF;
+        color: #ecc375;
+        background: #85a4e9;
     }
     @media(min-width:1000px) and (max-width:1400px){
       .formulario {
@@ -63,6 +87,13 @@ class BatchForm extends LitElement {
         margin-top:120px;
         margin-left:45px;
         width:370px;
+      }
+    }
+    @media(max-width:500px){
+      .formulario {
+        margin-top:120px;
+        margin-left:0px;
+        width:320px;
       }
     }
   
