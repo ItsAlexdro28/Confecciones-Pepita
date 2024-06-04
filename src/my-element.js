@@ -25,6 +25,7 @@ function mostrarFormularioEmpleado() {
 document.getElementById('showEmployeeForm').addEventListener('click', function(event) {
   event.preventDefault();
   mostrarFormularioEmpleado();
+  document.getElementById('menu-bar').checked = false;
 });
 
 
@@ -39,6 +40,7 @@ function mostrarFormularioMateriaPrima() {
 document.getElementById('showMaterialsForm').addEventListener('click', function(event) {
   event.preventDefault();
   mostrarFormularioMateriaPrima();
+  document.getElementById('menu-bar').checked = false;
 });
 
 // formulario registro de lote
@@ -53,6 +55,7 @@ function mostrarFormularioLotes(){
 document.getElementById('showBatchForm').addEventListener('click', function(event) {
   event.preventDefault();
   mostrarFormularioLotes();
+  document.getElementById('menu-bar').checked = false;
 })
 
 // formulario registro de eficiencia
@@ -67,6 +70,7 @@ function mostrarFormularioEficiencia(){
 document.getElementById('showEficiencyForm').addEventListener('click', function(event) {
   event.preventDefault();
   mostrarFormularioEficiencia();
+  document.getElementById('menu-bar').checked = false;
 })
 
 // tabla materia prima
@@ -80,6 +84,7 @@ function mostrarTablaMateriaPrima(){
 document.getElementById('showMaterialsTable').addEventListener('click', function(event) {
   event.preventDefault();
   mostrarTablaMateriaPrima()
+  document.getElementById('menu-bar').checked = false;
 })
 
 
@@ -95,6 +100,7 @@ function mostrarTablaManoObra(){
 document.getElementById('showEmployee').addEventListener('click', function(event) {
   event.preventDefault();
   mostrarTablaManoObra()
+  document.getElementById('menu-bar').checked = false;
 })
 
 // tabla eficiencia
@@ -109,6 +115,7 @@ function mostrarTablaEficiencia(){
 document.getElementById('showEficiency').addEventListener('click', function(event) {
   event.preventDefault();
   mostrarTablaEficiencia()
+  document.getElementById('menu-bar').checked = false;
 })
 
 // tabla lote
@@ -123,6 +130,7 @@ function mostrarTablaLotes(){
 document.getElementById('showBatch').addEventListener('click', function(event) {
   event.preventDefault();
   mostrarTablaLotes()
+  document.getElementById('menu-bar').checked = false;
 })
 
 // formulario registro de costos indirectos
@@ -137,6 +145,7 @@ function mostrarFormularioCostosIndirectos(){
 document.getElementById('showCostsForm').addEventListener('click', function(event) {
   event.preventDefault();
   mostrarFormularioCostosIndirectos();
+  document.getElementById('menu-bar').checked = false;
 })
 
 // tabla costos indirectos
@@ -150,6 +159,7 @@ function mostrarTablaCostosIndirectos(){
 document.getElementById('showCostsTable').addEventListener('click', function(event) {
   event.preventDefault();
   mostrarTablaCostosIndirectos()
+  document.getElementById('menu-bar').checked = false;
 })
 
 
