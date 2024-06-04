@@ -198,14 +198,28 @@ button:hover {
     width: 380px;
     height: 390px;
     margin-right: 20px;
+    border-radius: 10px;
 }
 .info {
     flex: 1;
 }
-
-
-
-
+.tallasTabla{
+    display: flex;
+    gap:4px;
+    margin-top: 5px;
+    
+}
+.tallaInfo{
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff8a;
+    border-radius: 2px;
+    width:115px;
+    padding: 4px;
+}
+.info h3{
+    text-align: center;
+}
 
 @media(min-width:620px)and(max-width:991px){
     header {
@@ -261,6 +275,10 @@ button:hover {
     .cuadros p{
         margin-top: 100px;
     }
+    .inventario{
+        grid-template-columns: 1fr;
+    }
+    
 }
 
 
@@ -281,6 +299,14 @@ button:hover {
     }
     .click{
         width: 40px;
+    }
+    .inventario{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .producto img {
+        width: 380px;
+        height: 390px;
+        margin-right: 20px;
     }
 }
 @media(max-width:618px){
@@ -344,4 +370,9 @@ button:hover {
         height: 150px;
         margin-left: 0;
     }
-} 
+    .inventario{
+        grid-template-columns: 1fr;
+        margin-top: 100px;
+    }
+    
+}
