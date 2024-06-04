@@ -10,7 +10,7 @@ import './components/info-lote.js';
 import './components/costos-indirectos.js';
 import './components/tabla-costos-indirectos.js';
 import './components/tabla-mano-obra.js';
-
+import './components/home.js';
 
 // formulario de registro de empleados
 function mostrarFormularioEmpleado() {
@@ -162,6 +162,20 @@ document.getElementById('showCostsTable').addEventListener('click', function(eve
   document.getElementById('menu-bar').checked = false;
 })
 
+
+// Primera pagina
+function mostrarPrimeraPagina(){
+  const home = document.createElement('primera-pagina');
+
+  document.getElementById('main').innerHTML='';
+  document.getElementById('main').appendChild(home);
+}
+
+document.getElementById('primeraPagina').addEventListener('click', function(event) {
+  event.preventDefault();
+  mostrarPrimeraPagina()
+  document.getElementById('menu-bar').checked = false;
+})
 
 window.customElements.define('my-element', MyElement)
 
