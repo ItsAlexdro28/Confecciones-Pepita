@@ -177,7 +177,7 @@ class TablaManoDeObra extends LitElement {
 
   constructor() {
     super();
-    this.tablaManoDeObra = JSON.parse(localStorage.getItem('tablaManoDeObra')) || [];
+    this.tablaManoDeObra = JSON.parse(localStorage.getItem('TablaManoDeObra')) || [];
   }
 
   render() {
@@ -185,7 +185,7 @@ class TablaManoDeObra extends LitElement {
       <div class="tabla">
         <h2>Costos de Mano de Obra</h2>
         <table>
-          ${this.TablaManoDeObra.map(employee => html`
+          ${this.tablaManoDeObra.map(employee => html`
             <tr>
               <th>Nombre</th>
               <td>Hola</td>
@@ -201,10 +201,6 @@ class TablaManoDeObra extends LitElement {
             <tr>
               <th>Beneficios</th>
               <td>${employee.benefits}</td>
-            </tr>
-            <tr>
-              <th>Costos Indirectos</th>
-              <td>${employee.overheads}</td>
             </tr>
             <tr>
               <th>Total Salario</th>
