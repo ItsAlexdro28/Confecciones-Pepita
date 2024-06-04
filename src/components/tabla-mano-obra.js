@@ -5,8 +5,8 @@ class TablaManoDeObra extends LitElement {
   static styles = css`
     .tabla {
       position:absolute;
-      top:120px;
-      left:50px;
+      top:220px;
+      left:250px;
       display: block;
       font-family: Arial, sans-serif;
       max-width: 800px;

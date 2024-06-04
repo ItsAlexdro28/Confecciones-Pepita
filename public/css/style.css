@@ -10,7 +10,9 @@ body{
     min-height: 100vh;
     font-family: "Freeman", sans-serif;
 }
-
+th{
+    width:500px;
+}
 header{
     position: fixed;
     z-index: 1000;

@@ -62,76 +62,62 @@ class CostosIndirectos extends LitElement {
 
   constructor() {
     super();
-    this.indirectCosts = {
-      rent: { description: '', value: '' },
-      utilities: { description: '', value: '' },
-      maintenance: { description: '', value: '' },
-      ppe: { description: '', value: '' },
-      training: { description: '', value: '' },
-      insurance: { description: '', value: '' },
-      officeExpenses: { description: '', value: '' },
-      transport: { description: '', value: '' },
-      licenses: { description: '', value: '' },
-      cleaning: { description: '', value: '' },
-    };
+    this.costName = '';
+    this.description = '';
+    this.value = '';
   }
 
-  handleChange(e, category, field) {
-    this.indirectCosts[category][field] = e.target.value;
+  handleChange(e, field) {
+    this[field] = e.target.value;
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    localStorage.setItem('indirectCosts', JSON.stringify(this.indirectCosts));
-    let sum = this.sumIndirectCosts(this.indirectCosts);
-    localStorage.setItem('totalIndirect', JSON.stringify(sum));
-    alert('Los costos indirectos han sido guardados.');
+    const newCost = {
+      name: this.costName,
+      description: this.description,
+      value: this.value,
+    };
+
+    let indirectCosts = JSON.parse(localStorage.getItem('indirectCosts')) || [];
+    indirectCosts.push(newCost);
+    localStorage.setItem('indirectCosts', JSON.stringify(indirectCosts));
+
+    // Clear form fields
+    this.costName = '';
+    this.description = '';
+    this.value = '';
+
+    // Force update
+    this.requestUpdate();
   }
 
-  sumIndirectCosts(indirectCosts) {
-      let total = 0;
-      for (let key in indirectCosts) {
-          if (indirectCosts.hasOwnProperty(key)) {
-              total += parseInt(indirectCosts[key].value, 10);
-          }
-      }
-      return total;
-  }
   render() {
     return html`
     <div class="formulario">
-    <h2>Formulario de Costos Indirectos</h2>
-    <form @submit="${this.handleSubmit}">
-      <label for="cost-name">Nombre del Costo:</label>
-      <input type="text" id="cost-name" .value="${this.costName}" @input="${e => this.handleChange(e, 'costName')}" required>
+      <h2>Formulario de Costos Indirectos</h2>
+      <form @submit="${this.handleSubmit}">
+        <label for="cost-name">Nombre del Costo:</label>
+        <input type="text" id="cost-name" .value="${this.costName}" @input="${e => this.handleChange(e, 'costName')}" required>
 
-      <label for="description">Descripción:</label>
-      <textarea id="description" .value="${this.description}" @input="${e => this.handleChange(e, 'description')}" required></textarea>
+        <label for="description">Descripción:</label>
+        <textarea id="description" .value="${this.description}" @input="${e => this.handleChange(e, 'description')}" required></textarea>
 
-      <label for="value">Valor:</label>
-      <input type="number" id="value" .value="${this.value}" @input="${e => this.handleChange(e, 'value')}" required>
+        <label for="value">Valor:</label>
+        <input type="number" id="value" .value="${this.value}" @input="${e => this.handleChange(e, 'value')}" required>
 
-      <button type="submit">Guardar Costo Indirecto</button>
-      <button type="button" @click="${this.clearForm}">Añadir Otro Costo Indirecto</button>
-    </form>
+        <button type="submit">Guardar Costo Indirecto</button>
+        <button type="button" @click="${this.clearForm}">Añadir Otro Costo Indirecto</button>
+      </form>
       </div>
     `;
   }
 
-  getLabel(category) {
-    const labels = {
-      rent: 'Alquiler del Local',
-      utilities: 'Servicios Públicos (Electricidad, Agua, Gas)',
-      maintenance: 'Mantenimiento de Maquinaria',
-      ppe: 'Equipo de Protección Personal (EPP)',
-      training: 'Formación y Capacitación de Empleados',
-      insurance: 'Seguros (Propiedad, Responsabilidad Civil, Salud)',
-      officeExpenses: 'Gastos de Oficina',
-      transport: 'Transporte y Logística',
-      licenses: 'Costos de Licencias y Permisos',
-      cleaning: 'Servicios de Limpieza',
-    };
-    return labels[category] || category;
+  clearForm() {
+    this.costName = '';
+    this.description = '';
+    this.value = '';
+    this.requestUpdate();
   }
 }
 
