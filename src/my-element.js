@@ -1,131 +1,181 @@
 import { LitElement, css, html } from 'lit'
-import litLogo from './assets/lit.svg'
-import viteLogo from '/vite.svg'
+import './components/costo-mano-obra.js'; 
+import './components/materia-prima.js';
+import './components/costo-lote.js';
+import './components/eficiencia.js';
+import './components/info-employees.js';
+import './components/tabla-materia-prima.js';
+import './components/info-enficiencia.js';
+import './components/info-lote.js';
+import './components/costos-indirectos.js';
+import './components/tabla-costos-indirectos.js';
+import './components/tabla-mano-obra.js';
+import './components/home.js';
 
-/**
- * An example element.
- *
- * @slot - This element has a slot
- * @csspart button - The button
- */
-export class MyElement extends LitElement {
-  static get properties() {
-    return {
-      /**
-       * Copy for the read the docs hint.
-       */
-      docsHint: { type: String },
-
-      /**
-       * The number of times the button has been clicked.
-       */
-      count: { type: Number },
-    }
-  }
-
-  constructor() {
-    super()
-    this.docsHint = 'Click on the Vite and Lit logos to learn more'
-    this.count = 0
-  }
-
-  render() {
-    return html`
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src=${viteLogo} class="logo" alt="Vite logo" />
-        </a>
-        <a href="https://lit.dev" target="_blank">
-          <img src=${litLogo} class="logo lit" alt="Lit logo" />
-        </a>
-      </div>
-      <slot></slot>
-      <div class="card">
-        <button @click=${this._onClick} part="button">
-          count is ${this.count}
-        </button>
-      </div>
-      <p class="read-the-docs">${this.docsHint}</p>
-    `
-  }
-
-  _onClick() {
-    this.count++
-  }
-
-  static get styles() {
-    return css`
-      :host {
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 2rem;
-        text-align: center;
-      }
-
-      .logo {
-        height: 6em;
-        padding: 1.5em;
-        will-change: filter;
-        transition: filter 300ms;
-      }
-      .logo:hover {
-        filter: drop-shadow(0 0 2em #646cffaa);
-      }
-      .logo.lit:hover {
-        filter: drop-shadow(0 0 2em #325cffaa);
-      }
-
-      .card {
-        padding: 2em;
-      }
-
-      .read-the-docs {
-        color: #888;
-      }
-
-      a {
-        font-weight: 500;
-        color: #646cff;
-        text-decoration: inherit;
-      }
-      a:hover {
-        color: #535bf2;
-      }
-
-      ::slotted(h1) {
-        font-size: 3.2em;
-        line-height: 1.1;
-      }
-
-      button {
-        border-radius: 8px;
-        border: 1px solid transparent;
-        padding: 0.6em 1.2em;
-        font-size: 1em;
-        font-weight: 500;
-        font-family: inherit;
-        background-color: #1a1a1a;
-        cursor: pointer;
-        transition: border-color 0.25s;
-      }
-      button:hover {
-        border-color: #646cff;
-      }
-      button:focus,
-      button:focus-visible {
-        outline: 4px auto -webkit-focus-ring-color;
-      }
-
-      @media (prefers-color-scheme: light) {
-        a:hover {
-          color: #747bff;
-        }
-        button {
-          background-color: #f9f9f9;
-        }
-      }
-    `
-  }
+// formulario de registro de empleados
+function mostrarFormularioEmpleado() {
+  // Crea una instancia del componente EmployeeForm
+  const employeeForm = document.createElement('mano-obra-form');
+  
+  // Reemplaza el contenido del elemento 'main' con el formulario de empleado
+  document.getElementById('main').innerHTML = '';
+  document.getElementById('main').appendChild(employeeForm);
 }
 
+document.getElementById('showEmployeeForm').addEventListener('click', function(event) {
+  event.preventDefault();
+  mostrarFormularioEmpleado();
+  document.getElementById('menu-bar').checked = false;
+});
+
+
+// formulario de registro de materia prima
+function mostrarFormularioMateriaPrima() {
+  const materialForm = document.createElement('materia-prima-form');
+  
+  document.getElementById('main').innerHTML = '';
+  document.getElementById('main').appendChild(materialForm);
+}
+
+document.getElementById('showMaterialsForm').addEventListener('click', function(event) {
+  event.preventDefault();
+  mostrarFormularioMateriaPrima();
+  document.getElementById('menu-bar').checked = false;
+});
+
+// formulario registro de lote
+
+function mostrarFormularioLotes(){
+  const batchForm = document.createElement('batch-form');
+
+  document.getElementById('main').innerHTML='';
+  document.getElementById('main').appendChild(batchForm);
+}
+
+document.getElementById('showBatchForm').addEventListener('click', function(event) {
+  event.preventDefault();
+  mostrarFormularioLotes();
+  document.getElementById('menu-bar').checked = false;
+})
+
+// formulario registro de eficiencia
+
+function mostrarFormularioEficiencia(){
+  const batchForm = document.createElement('eficiency-form');
+
+  document.getElementById('main').innerHTML='';
+  document.getElementById('main').appendChild(batchForm);
+}
+
+document.getElementById('showEficiencyForm').addEventListener('click', function(event) {
+  event.preventDefault();
+  mostrarFormularioEficiencia();
+  document.getElementById('menu-bar').checked = false;
+})
+
+// tabla materia prima
+function mostrarTablaMateriaPrima(){
+  const materialTable = document.createElement('tabla-materia-prima');
+
+  document.getElementById('main').innerHTML='';
+  document.getElementById('main').appendChild(materialTable);
+}
+
+document.getElementById('showMaterialsTable').addEventListener('click', function(event) {
+  event.preventDefault();
+  mostrarTablaMateriaPrima()
+  document.getElementById('menu-bar').checked = false;
+})
+
+
+// tabla mano de obra
+
+function mostrarTablaManoObra(){
+  const employeeTable = document.createElement('tabla-mano-obra');
+
+  document.getElementById('main').innerHTML='';
+  document.getElementById('main').appendChild(employeeTable);
+}
+
+document.getElementById('showEmployee').addEventListener('click', function(event) {
+  event.preventDefault();
+  mostrarTablaManoObra()
+  document.getElementById('menu-bar').checked = false;
+})
+
+// tabla eficiencia
+
+function mostrarTablaEficiencia(){
+  const eficiencieTable = document.createElement('eficiencie-table');
+
+  document.getElementById('main').innerHTML='';
+  document.getElementById('main').appendChild(eficiencieTable);
+}
+
+document.getElementById('showEficiency').addEventListener('click', function(event) {
+  event.preventDefault();
+  mostrarTablaEficiencia()
+  document.getElementById('menu-bar').checked = false;
+})
+
+// tabla lote
+
+function mostrarTablaLotes(){
+  const batchTable = document.createElement('batche-table');
+
+  document.getElementById('main').innerHTML='';
+  document.getElementById('main').appendChild(batchTable);
+}
+
+document.getElementById('showBatch').addEventListener('click', function(event) {
+  event.preventDefault();
+  mostrarTablaLotes()
+  document.getElementById('menu-bar').checked = false;
+})
+
+// formulario registro de costos indirectos
+
+function mostrarFormularioCostosIndirectos(){
+  const costsForm = document.createElement('costos-indirectos-form');
+
+  document.getElementById('main').innerHTML='';
+  document.getElementById('main').appendChild(costsForm);
+}
+
+document.getElementById('showCostsForm').addEventListener('click', function(event) {
+  event.preventDefault();
+  mostrarFormularioCostosIndirectos();
+  document.getElementById('menu-bar').checked = false;
+})
+
+// tabla costos indirectos
+function mostrarTablaCostosIndirectos(){
+  const costsTable = document.createElement('tabla-costos-indirectos');
+
+  document.getElementById('main').innerHTML='';
+  document.getElementById('main').appendChild(costsTable);
+}
+
+document.getElementById('showCostsTable').addEventListener('click', function(event) {
+  event.preventDefault();
+  mostrarTablaCostosIndirectos()
+  document.getElementById('menu-bar').checked = false;
+})
+
+
+// Primera pagina
+function mostrarPrimeraPagina(){
+  const home = document.createElement('primera-pagina');
+
+  document.getElementById('main').innerHTML='';
+  document.getElementById('main').appendChild(home);
+}
+
+document.getElementById('primeraPagina').addEventListener('click', function(event) {
+  event.preventDefault();
+  mostrarPrimeraPagina()
+  document.getElementById('menu-bar').checked = false;
+})
+
 window.customElements.define('my-element', MyElement)
+
