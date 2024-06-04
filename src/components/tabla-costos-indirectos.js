@@ -89,7 +89,7 @@ class TablaCostosIndirectos extends LitElement {
               <td>${cost.description}</td>
             </tr>
             <tr>
-              <th>Valor (USD)</th>
+              <th>Valor (COP)</th>
               <td>${cost.value}</td>
             </tr>
           `)}
@@ -151,7 +151,7 @@ customElements.define('tabla-costos-indirectos', TablaCostosIndirectos);
 //           <tr>
 //             <th>Nombre</th>
 //             <th>Descripción</th>
-//             <th>Valor (USD)</th>
+//             <th>Valor (COP)</th>
 //           </tr>
 //         </thead>
 //         <tbody>
