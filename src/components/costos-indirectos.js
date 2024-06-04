@@ -81,8 +81,11 @@ class CostosIndirectos extends LitElement {
 
     let indirectCosts = JSON.parse(localStorage.getItem('indirectCosts')) || [];
     indirectCosts.push(newCost);
+    console.log(indirectCosts)
+    let totalIndirect = this.sumIndirectCosts(indirectCosts)
     localStorage.setItem('indirectCosts', JSON.stringify(indirectCosts));
-
+    localStorage.setItem('totalIndirect', JSON.stringify(totalIndirect));
+    
     // Clear form fields
     this.costName = '';
     this.description = '';
@@ -90,6 +93,13 @@ class CostosIndirectos extends LitElement {
 
     // Force update
     this.requestUpdate();
+  }
+  sumIndirectCosts(indirectCosts) {
+    let total = 0;
+    for (let i = 0; i < indirectCosts.length; i++) {
+        total += parseFloat(indirectCosts[i].value);
+    }
+    return total;
   }
 
   render() {
