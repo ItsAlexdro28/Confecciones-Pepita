@@ -50,6 +50,7 @@ class TablaManoDeObra extends LitElement {
         width: 50%;
       }
     }
+    
   `;
 
   constructor() {

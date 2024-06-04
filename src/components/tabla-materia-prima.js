@@ -140,6 +140,13 @@ class TablaMateriaPrima extends LitElement {
         width: 50%;
       }
     }
+    @media(max-width:619px){
+      .tabla {
+        margin-top:100px;
+        margin-left:45px;
+        width:370px;
+      }
+    }
   `;
 
   constructor() {

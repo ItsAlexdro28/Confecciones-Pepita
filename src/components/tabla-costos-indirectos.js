@@ -58,9 +58,12 @@ class TablaCostosIndirectos extends LitElement {
 
     @media(max-width:619px) {
       .tabla {
-        margin-top: 100px;
-        margin-left: 10px;
+        margin-top: 120px;
+        margin-left: 45px;
         width: 370px;
+      }
+      tr{
+        width:340px;
       }
     }
   `;

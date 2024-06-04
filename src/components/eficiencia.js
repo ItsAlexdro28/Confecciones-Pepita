@@ -58,6 +58,13 @@ class EficiencyForm extends LitElement {
         width:600px;
       }
     }
+    @media(max-width:619px){
+      .formulario {
+        margin-top:120px;
+        margin-left:45px;
+        width:380px;
+      }
+    }
   
   `;
 

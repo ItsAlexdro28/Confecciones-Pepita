@@ -84,9 +84,14 @@ class MateriaPrima extends LitElement {
     }
       @media(max-width:619px){
         .formulario {
-          top:120px;
-          left:10px;
-          width:370px;
+          margin-top:120px;
+          margin-left:45px;
+          width:380px;
+        }
+        .formulario2 {
+          margin-top:50px;
+          margin-left:0px;
+          width:340px
         }
       }
 

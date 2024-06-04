@@ -117,8 +117,6 @@ header label {
 }
 
 
-    /* FORMULARIO MATERIALES*/
-
 @media(min-width:620px)and(max-width:991px){
     header {
         padding: 20px;
@@ -256,4 +254,4 @@ header label {
         height: 150px;
         margin-left: 0;
     }
-}
+} 

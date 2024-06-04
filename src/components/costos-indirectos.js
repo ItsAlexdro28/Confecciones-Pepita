@@ -54,7 +54,7 @@ class CostosIndirectos extends LitElement {
     @media(max-width:619px){
       .formulario {
         top:120px;
-        left:30px;
+        left:45px;
         width:380px;
       }
     }

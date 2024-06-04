@@ -66,9 +66,10 @@ class BatcheTable extends LitElement {
     @media(max-width:619px){
       .tabla {
         margin-top:100px;
-        margin-left:10px;
+        margin-left:45px;
         width:370px;
       }
+    }
   `;
 
   constructor() {
