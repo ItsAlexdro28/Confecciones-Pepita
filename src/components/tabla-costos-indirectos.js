@@ -85,9 +85,10 @@ class TablaCostosIndirectos extends LitElement {
     .tabla {
       position:absolute;
       top:150px;
+      left:150px;
       display: block;
       font-family: Arial, sans-serif;
-      width: 1000px;
+      width: 800px;
       margin: 0 auto;
       padding: 20px;
       background-color: #f9f9f9;

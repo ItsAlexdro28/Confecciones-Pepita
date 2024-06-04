@@ -28,12 +28,35 @@ class CostosIndirectos extends LitElement {
       border: 1px solid #ccc;
     }
     button {
-      background-color: #007BFF;
-      color: white;
+      background-color: rgb(235, 127, 127);
+      color: #fff;
       cursor: pointer;
+      width:280px;
     }
     button:hover {
       background-color: #0056b3;
+      font-size:20px
+    }
+    @media(min-width:1000px) and (max-width:1400px){
+      .formulario {
+        top:180px;
+        left:250px;
+        width:800px
+      }
+    }
+    @media(min-width:620px) and(max-width:999px){
+      .formulario {
+        top:120px;
+        left:50px;
+        width:600px;
+      }
+    }
+    @media(max-width:619px){
+      .formulario {
+        top:120px;
+        left:30px;
+        width:380px;
+      }
     }
   `;
 
@@ -77,18 +100,20 @@ class CostosIndirectos extends LitElement {
   render() {
     return html`
     <div class="formulario">
-      <h2>Formulario de Costos Indirectos</h2>
-      <p class="warning">Completa unicamente los campos necesarios</p>
-      <form @submit="${this.handleSubmit}">
-        ${Object.keys(this.indirectCosts).map(category => html`
-          <label for="${category}-description">${this.getLabel(category)} Descripción:</label>
-          <textarea id="${category}-description" @input="${e => this.handleChange(e, category, 'description')}" placeholder="Descripción"></textarea>
+    <h2>Formulario de Costos Indirectos</h2>
+    <form @submit="${this.handleSubmit}">
+      <label for="cost-name">Nombre del Costo:</label>
+      <input type="text" id="cost-name" .value="${this.costName}" @input="${e => this.handleChange(e, 'costName')}" required>
 
-          <label for="${category}-value">${this.getLabel(category)} Valor:</label>
-          <input type="number" id="${category}-value" @input="${e => this.handleChange(e, category, 'value')}" placeholder="Valor en USD">
-        `)}
-        <button type="submit">Guardar Costos Indirectos</button>
-      </form>
+      <label for="description">Descripción:</label>
+      <textarea id="description" .value="${this.description}" @input="${e => this.handleChange(e, 'description')}" required></textarea>
+
+      <label for="value">Valor:</label>
+      <input type="number" id="value" .value="${this.value}" @input="${e => this.handleChange(e, 'value')}" required>
+
+      <button type="submit">Guardar Costo Indirecto</button>
+      <button type="button" @click="${this.clearForm}">Añadir Otro Costo Indirecto</button>
+    </form>
       </div>
     `;
   }
