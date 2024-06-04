@@ -65,10 +65,10 @@ class ManoDeObra extends LitElement {
       }
     }
   `;
-
+  
   constructor() {
     super();
-    this.currentEmployee = {hourlyWage: '', hoursWorked: '', benefits: ''};
+    this.currentEmployee = { hourlyWage: '', hoursWorked: '', benefits: '' };
     this.totalCost = 0;
   }
 
@@ -78,7 +78,7 @@ class ManoDeObra extends LitElement {
   }
 
   calculateTotalSalary() {
-    const { hourlyWage, hoursWorked, benefits, overheads } = this.currentEmployee;
+    const { hourlyWage, hoursWorked, benefits } = this.currentEmployee;
     return (parseFloat(hourlyWage) * parseFloat(hoursWorked)) + parseFloat(benefits);
   }
 
@@ -89,39 +89,41 @@ class ManoDeObra extends LitElement {
       totalSalary
     };
 
-    let employees = JSON.parse(localStorage.getItem('employees')) || [];
+    let employees = JSON.parse(localStorage.getItem('TablaManoDeObra')) || [];
     employees.push(employeeData);
-    localStorage.setItem('employees', JSON.stringify(employees));
-    
-    this.currentEmployee = {hourlyWage: '', hoursWorked: '', benefits: ''};
+    localStorage.setItem('TablaManoDeObra', JSON.stringify(employees));
+
+    this.currentEmployee = { hourlyWage: '', hoursWorked: '', benefits: '' };
     this.calculateTotalCost();
+
+    // Emitir un evento personalizado para notificar la actualización
+    window.dispatchEvent(new CustomEvent('employee-added'));
   }
 
   calculateTotalCost() {
-    let employees = JSON.parse(localStorage.getItem('employees')) || [];
+    let employees = JSON.parse(localStorage.getItem('TablaManoDeObra')) || [];
     this.totalCost = employees.reduce((acc, employee) => acc + employee.totalSalary, 0);
     localStorage.setItem('totalCost', JSON.stringify(this.totalCost));
   }
 
   render() {
     return html`
-    <div class="formulario">
-      <h2>Agregar Costo de Mano de Obra</h2>
-      <form @submit="${this.handleSubmit}">
-        <label>Salario por Hora</label>
-        <input type="number" name="hourlyWage" .value="${this.currentEmployee.hourlyWage}" @input="${this.updateEmployee}" required>
+      <div class="formulario">
+        <h2>Agregar Costo de Mano de Obra</h2>
+        <form @submit="${this.handleSubmit}">
+          <label>Salario por Hora</label>
+          <input type="number" name="hourlyWage" .value="${this.currentEmployee.hourlyWage}" @input="${this.updateEmployee}" required>
 
-        <label>Número de Horas Trabajadas</label>
-        <input type="number" name="hoursWorked" .value="${this.currentEmployee.hoursWorked}" @input="${this.updateEmployee}" required>
+          <label>Número de Horas Trabajadas</label>
+          <input type="number" name="hoursWorked" .value="${this.currentEmployee.hoursWorked}" @input="${this.updateEmployee}" required>
 
-        <label>Beneficios</label>
-        <input type="number" name="benefits" .value="${this.currentEmployee.benefits}" @input="${this.updateEmployee}">
+          <label>Beneficios</label>
+          <input type="number" name="benefits" .value="${this.currentEmployee.benefits}" @input="${this.updateEmployee}">
 
-        <button type="button" @click="${this.addEmployee}">Registrar</button>
-      </form>
-      
-    </div>
-      `;
+          <button type="button" @click="${this.addEmployee}">Registrar</button>
+        </form>
+      </div>
+    `;
   }
 
   handleSubmit(event) {
@@ -133,5 +135,76 @@ class ManoDeObra extends LitElement {
 customElements.define('mano-obra-form', ManoDeObra);
 
 
+//   constructor() {
+//     super();
+//     this.currentEmployee = {hourlyWage: '', hoursWorked: '', benefits: '', overheads: ''};
+//     this.totalCost = 0;
+// }
+
+//   updateEmployee(event) {
+//     const { name, value } = event.target;
+//     this.currentEmployee = { ...this.currentEmployee, [name]: value };
+//   }
+
+//   calculateTotalSalary() {
+//     const { hourlyWage, hoursWorked, benefits } = this.currentEmployee;
+//     return (parseFloat(hourlyWage) * parseFloat(hoursWorked)) + parseFloat(benefits);
+//   }
+
+//   addEmployee() {
+//     const totalSalary = this.calculateTotalSalary();
+//     const employeeData = {
+//       ...this.currentEmployee,
+//       totalSalary
+//     };
+
+//     let employees = JSON.parse(localStorage.getItem('TablaManoDeObra')) || [];
+//     employees.push(employeeData);
+//     localStorage.setItem('TablaManoDeObra', JSON.stringify(employees));
+    
+//     this.currentEmployee = {hourlyWage: '', hoursWorked: '', benefits: ''};
+//     this.calculateTotalCost();
+
+//     // Recargar la página para actualizar la tabla
+//     location.reload();
+//   }
+
+//   calculateTotalCost() {
+//     let employees = JSON.parse(localStorage.getItem('employees')) || [];
+//     this.totalCost = employees.reduce((acc, employee) => acc + employee.totalSalary, 0);
+//     localStorage.setItem('totalCost', JSON.stringify(this.totalCost));
+//   }
+
+//   render() {
+//     return html`
+//     <div class="formulario">
+//       <h2>Agregar Costo de Mano de Obra</h2>
+//       <form @submit="${this.handleSubmit}">
+//         <label>Salario por Hora</label>
+//         <input type="number" name="hourlyWage" .value="${this.currentEmployee.hourlyWage}" @input="${this.updateEmployee}" required>
+
+//         <label>Número de Horas Trabajadas</label>
+//         <input type="number" name="hoursWorked" .value="${this.currentEmployee.hoursWorked}" @input="${this.updateEmployee}" required>
+
+//         <label>Beneficios</label>
+//         <input type="number" name="benefits" .value="${this.currentEmployee.benefits}" @input="${this.updateEmployee}">
+
+//         <label>Costos Indirectos</label>
+//         <input type="number" name="overheads" .value="${this.currentEmployee.overheads}" @input="${this.updateEmployee}">
+
+//         <button type="submit" @click="${this.addEmployee}">Registrar</button>
+//       </form>
+      
+//     </div>
+//       `;
+//   }
+
+//   handleSubmit(event) {
+//     event.preventDefault();
+//     this.addEmployee();
+//   }
+// }
+
+// customElements.define('mano-obra-form', ManoDeObra);
 
 

@@ -90,7 +90,7 @@ class TablaMateriaPrima extends LitElement {
   static styles = css`
     .tabla {
       margin-top: 250px;
-      margin-left: 300px;
+      margin-left: 400px;
       display: block;
       font-family: Arial, sans-serif;
       max-width: 1200px;
@@ -100,7 +100,7 @@ class TablaMateriaPrima extends LitElement {
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
     table {
-      width: 100%;
+      width: 800px;
       border-collapse: collapse;
       margin: 20px 0;
     }
@@ -108,10 +108,13 @@ class TablaMateriaPrima extends LitElement {
       padding: 10px;
       border: 1px solid #ccc;
       text-align: left;
+      width:400px;
     }
+    
     th {
       background-color: #c2fdefe8 ;
       color: grey;
+      
     }
     @media(min-width: 1000px) and (max-width: 1400px) {
       .tabla {
