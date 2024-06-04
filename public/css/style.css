@@ -172,6 +172,41 @@ button:hover {
     box-shadow: inset 00px 100px 0px 0px #6098FF;
     color: #ecc375;
 }
+
+
+
+/*inventario*/
+.inventario{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 150px;
+    padding: 50px;
+    
+}
+.producto {
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    margin-bottom: 50px;
+    gap:15px;
+    font-size: 18px;
+}
+.producto img {
+    width: 380px;
+    height: 390px;
+    margin-right: 20px;
+}
+.info {
+    flex: 1;
+}
+
+
+
+
+
 @media(min-width:620px)and(max-width:991px){
     header {
         padding: 20px;

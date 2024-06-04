@@ -11,7 +11,7 @@ import './components/costos-indirectos.js';
 import './components/tabla-costos-indirectos.js';
 import './components/tabla-mano-obra.js';
 import './components/home.js';
-
+import './components/produccion-inventario.js'
 // formulario de registro de empleados
 function mostrarFormularioEmpleado() {
   // Crea una instancia del componente EmployeeForm
@@ -176,6 +176,23 @@ document.getElementById('primeraPagina').addEventListener('click', function(even
   mostrarPrimeraPagina()
   document.getElementById('menu-bar').checked = false;
 })
+
+
+function mostrarInventario() {
+  // Crea una instancia del componente EmployeeForm
+  const inventario = document.createElement('productos-lista');
+  
+  // Reemplaza el contenido del elemento 'main' con el formulario de empleado
+  document.getElementById('main').innerHTML = '';
+  document.getElementById('main').appendChild(inventario);
+}
+
+document.getElementById('showProduct').addEventListener('click', function(event) {
+  event.preventDefault();
+  mostrarInventario();
+  document.getElementById('menu-bar').checked = false;
+});
+
 
 window.customElements.define('my-element', MyElement)
 
