@@ -49,6 +49,13 @@ class TablaManoDeObra extends LitElement {
         width: 50%;
       }
     }
+    @media(max-width:619px){
+      .tabla {
+        top:100px;
+        left:45px;
+        width:370px;
+      }
+    }
     
   `;
 
