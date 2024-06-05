@@ -151,7 +151,7 @@ class EficiencyForm extends LitElement {
 
     let eficiencies = JSON.parse(localStorage.getItem('eficiencies')) || [];
     eficiencies.push(eficiencyData);
-    localStorage.setItem('eficiencies', JSON.stringify(eficiences));
+    localStorage.setItem('eficiencies', JSON.stringify(eficiencies));
 
     this.currentEficiency = { finishedProducts: 0, workingHours: 0, brokenProducts: 0 };
 
