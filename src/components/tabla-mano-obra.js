@@ -5,11 +5,11 @@ class TablaManoDeObra extends LitElement {
     .tabla {
       position:absolute;
       top:220px;
-      left:250px;
+      left:150px;
       display: block;
       font-family: Arial, sans-serif;
       width: 1000px;
-      margin: 0 auto;
+      
       padding: 20px;
       background-color: #f9f9f9;
       border-radius: 10px;
