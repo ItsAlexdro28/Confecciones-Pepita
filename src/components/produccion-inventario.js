@@ -2,7 +2,7 @@ import { LitElement, html, css } from 'lit';
 
 export const productos = [
     {
-        imagen: ('public/images/pantalon1.webp'),
+        imagen: ('./public/images/pantalon1.webp'),
         nombre: "Pantalón elegante mujer",
         material: {
             s: {
@@ -23,7 +23,7 @@ export const productos = [
         }
     },
     {
-        imagen: ('public/images/blusa1.webp'),
+        imagen: ('./public/images/blusa1.webp'),
         nombre: "Blusa elegante mujer",
         material: {
             s: {
@@ -44,7 +44,7 @@ export const productos = [
         }
     },
     {
-        imagen: ('public/images/chaleco1.jpg'),
+        imagen: ('./public/images/chaleco1.jpg'),
         nombre: "Chaleco traje hombre",
         material: {
             s: {
@@ -65,7 +65,7 @@ export const productos = [
         }
     },
     {
-        imagen: ('public/images/gala1.webp'),
+        imagen: ('./public/images/gala1.webp'),
         nombre: "Vestido gala mujer",
         material: {
             s: {
@@ -86,7 +86,7 @@ export const productos = [
         }
     },
     {
-        imagen: ('public/images/gala2.webp'),
+        imagen: ('./public/images/gala2.webp'),
         nombre: "Vestido formal mujer",
         material: {
             s: {
@@ -107,7 +107,7 @@ export const productos = [
         }
     },
     {
-        imagen: ('public/images/traje1.jpg'),
+        imagen: ('./public/images/traje1.jpg'),
         nombre: "Traje boda hombre",
         material: {
             s: {
@@ -128,7 +128,7 @@ export const productos = [
         }
     },
     {
-        imagen: ('public/images/traje2.jpg'),
+        imagen: ('./public/images/traje2.jpg'),
         nombre: "Traje formal hombre",
         material: {
             s: {
@@ -149,7 +149,7 @@ export const productos = [
         }
     },
     {
-        imagen: ('public/images/pantalon1.webp'),
+        imagen: ('./public/images/pantalon1.webp'),
         nombre: "Pantalón elegante mujer",
         material: {
             s: {
@@ -170,7 +170,7 @@ export const productos = [
         }
     },
     {
-        imagen: ('public/images/vestido1.webp'),
+        imagen: ('./public/images/vestido1.webp'),
         nombre: "Vestido de novia",
         material: {
             s: {
@@ -191,7 +191,7 @@ export const productos = [
         }
     },
     {
-        imagen: ('public/images/vestido2.webp'),
+        imagen: ('./public/images/vestido2.webp'),
         nombre: "Vestido de novia",
         material: {
             s: {
@@ -212,7 +212,7 @@ export const productos = [
         }
     },
     {
-        imagen: ('public/images/playera.webp'),
+        imagen: ('./public/images/playera.webp'),
         nombre: "Playera unicolor hombre",
         material: {
             s: {
@@ -233,7 +233,7 @@ export const productos = [
         }
     },
     {
-        imagen: ('public/images/cuello.jpg'),
+        imagen: ('./public/images/cuello.jpg'),
         nombre: "Camisa elegante hombre",
         material: {
             s: {
