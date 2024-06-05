@@ -65,7 +65,7 @@ export const productos = [
         }
     },
     {
-        imagen: ('../public/images/gala1.jpg'),
+        imagen: ('../public/images/gala1.webp'),
         nombre: "Vestido gala mujer",
         material: {
             s: {
@@ -86,7 +86,7 @@ export const productos = [
         }
     },
     {
-        imagen: ('../public/images/gala2.jpg'),
+        imagen: ('../public/images/gala2.webp'),
         nombre: "Vestido formal mujer",
         material: {
             s: {
