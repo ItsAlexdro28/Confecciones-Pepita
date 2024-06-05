@@ -3,8 +3,8 @@ import { LitElement, html, css } from 'lit';
 class ManoDeObra extends LitElement {
   static styles = css`
     .formulario {
-      margin-top:220px;
-      margin-left:500px;
+      margin-top: 220px;
+      margin-left: 500px;
       display: block;
       font-family: Arial, sans-serif;
       width: 800px;
@@ -36,67 +36,78 @@ class ManoDeObra extends LitElement {
     button {
       width: 250px;
       box-shadow: inset 000px 0px 0px 0px #e28daa;
-    -webkit-transition: all 0.6s cubic-bezier(.9, .24, .40, 1);
-    transition: all 0.4s cubic-bezier(.9, .24, .40, 1);
-    background-color: #d4759a;;
+      -webkit-transition: all 0.6s cubic-bezier(.9, .24, .40, 1);
+      transition: all 0.4s cubic-bezier(.9, .24, .40, 1);
+      background-color: #d4759a;
     }
-  
     button::before {
-        width: 250px;
-        height: 0%;
-        display: block;
-        background: yellow;
-        position: absolute;
-        left: 0%;
-        opacity: 0;
-        top: 0;
-        z-index: -1;
-        -webkit-transition: height .2s cubic-bezier(0.9, 1, 0.32, 1), opacity .5s ease;
-        transition: height .2s cubic-bezier(0.9, 1, 0.32, 1), opacity .5s ease;
-      
+      width: 250px;
+      height: 0%;
+      display: block;
+      background: yellow;
+      position: absolute;
+      left: 0%;
+      opacity: 0;
+      top: 0;
+      z-index: -1;
+      -webkit-transition: height .2s cubic-bezier(0.9, 1, 0.32, 1), opacity .5s ease;
+      transition: height .2s cubic-bezier(0.9, 1, 0.32, 1), opacity .5s ease;
     }
-    
     button:hover::before {
-        opacity: 1;
-        background: yellow;
-        height: 100%;
+      opacity: 1;
+      background: yellow;
+      height: 100%;
     }
-    
     button:hover {
-        box-shadow: inset 00px 100px 0px 0px #6098FF;
-        color: #ecc375;
-        background: #85a4e9;
+      box-shadow: inset 00px 100px 0px 0px #6098FF;
+      color: #ecc375;
+      background: #85a4e9;
     }
-    @media(min-width:1000px) and (max-width:1400px){
+    @media(min-width:1000px) and (max-width:1400px) {
       .formulario {
-        margin-top:180px;
-        margin-left:250px;
-        width:800px
+        margin-top: 180px;
+        margin-left: 250px;
+        width: 800px;
       }
     }
-    @media(min-width:620px) and (max-width:999px){
+    @media(min-width:620px) and (max-width:999px) {
       .formulario {
-        margin-top:120px;
-        margin-left:50px;
-        width:600px;
+        margin-top: 120px;
+        margin-left: 50px;
+        width: 600px;
       }
     }
-    @media(max-width:619px){
+    @media(max-width:619px) {
       .formulario {
-        margin-top:120px;
-        margin-left:45px;
-        width:380px;
+        margin-top: 120px;
+        margin-left: 45px;
+        width: 380px;
       }
     }
-    @media(max-width:500px){
+    @media(max-width:500px) {
       .formulario {
-        margin-top:120px;
-        margin-left:0px;
-        width:320px;
+        margin-top: 120px;
+        margin-left: 0px;
+        width: 320px;
       }
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #4CAF50;
+      color: white;
+      padding: 16px;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+    .popup.show {
+      display: block;
     }
   `;
-  
+
   constructor() {
     super();
     this.currentEmployee = { hourlyWage: '', hoursWorked: '', benefits: '' };
@@ -127,6 +138,9 @@ class ManoDeObra extends LitElement {
     this.currentEmployee = { hourlyWage: '', hoursWorked: '', benefits: '' };
     this.calculateTotalCost();
 
+    // Muestra notificacion
+    this.showNotification('Datos de mano de obra guardados con éxito.');
+
     // Emitir un evento personalizado para notificar la actualización
     window.dispatchEvent(new CustomEvent('employee-added'));
   }
@@ -135,6 +149,15 @@ class ManoDeObra extends LitElement {
     let employees = JSON.parse(localStorage.getItem('TablaManoDeObra')) || [];
     this.totalCost = employees.reduce((acc, employee) => acc + employee.totalSalary, 0);
     localStorage.setItem('totalCost', JSON.stringify(this.totalCost));
+  }
+
+  showNotification(message) {
+    const popup = this.shadowRoot.querySelector('.popup');
+    popup.textContent = message;
+    popup.classList.add('show');
+    setTimeout(() => {
+      popup.classList.remove('show');
+    }, 3000);
   }
 
   render() {
@@ -154,6 +177,7 @@ class ManoDeObra extends LitElement {
           <button type="button" @click="${this.addEmployee}">Registrar</button>
         </form>
       </div>
+      <div class="popup"></div>
     `;
   }
 
@@ -164,6 +188,7 @@ class ManoDeObra extends LitElement {
 }
 
 customElements.define('mano-obra-form', ManoDeObra);
+
 
 
 //   constructor() {
