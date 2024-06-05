@@ -269,9 +269,9 @@ class ProductosComponent extends LitElement {
 
     render() {
         return html`
-            <styles>
-                <link rel="stylesheet" href="/css/style.css"/>
-            </styles>
+        <style>
+        @import "../public/css/style.css";
+        </style>
             <div class="inventario">
                 ${this.productos.map(producto => html`
                     <div class="producto">
