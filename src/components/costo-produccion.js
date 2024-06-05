@@ -1,4 +1,5 @@
 import { productos } from './produccion-inventario.js'; 
+import './tabla-produccion.js'
 import { LitElement, html, css } from 'lit';
 
 class ClothingForm extends LitElement {
@@ -137,8 +138,9 @@ class ClothingForm extends LitElement {
 
   constructor() {
     super();
-    this.currentProduction = {index: -1, quantity: '', size: '', hoursPerItem: 0, material: '', totalCost: 0}
+    this.currentProduction = {index: -1, quantity: '', size: '', hoursPerItem: 0, priceHours: 0, material: '', totalCost: 0}
     this.selectedIndex = -1;
+    this.materialIndex = -1;
     this.materials = this.loadMaterialsFromLocalStorage();
   }
 
@@ -159,9 +161,11 @@ class ClothingForm extends LitElement {
   }
 
   updateMaterial(event) {
+    let materials = this.loadMaterialsFromLocalStorage();
+    this.materialIndex = event.target.value;
     this.currentProduction = {
       ...this.currentProduction,
-      material: event.target.value
+      material: materials[event.target.value]['name']
     };
   }
 
@@ -180,13 +184,30 @@ class ClothingForm extends LitElement {
   }
 
   addProduction() {
-    console.log(this.currentProduction)
+    console.log(this.currentProduction);
     let production = JSON.parse(localStorage.getItem('production')) || [];
+    let currentSize = this.currentProduction.size;
+    let totalMaterial = Number(this.currentProduction.quantity) * Number(productos[this.selectedIndex]['material'][currentSize]['metrosMateria']);
 
+    let materials = this.loadMaterialsFromLocalStorage();
+    if (totalMaterial > Number(materials[this.materialIndex]['quantity'])) {
+        console.log("No hay suficiente")
+        window.alert("No tienes materiales suficientes");
+    } else {
+        materials[this.materialIndex]['quantity'] -= totalMaterial; 
+        let priceHours = Number(this.currentProduction.hoursPerItem) * Number(this.currentProduction.priceHours);
+        let priceMaterial = totalMaterial * materials[this.materialIndex]['price'];
+        this.currentProduction.totalCost = priceHours + priceMaterial;
+    }
     production.push(this.currentProduction);
     localStorage.setItem('production', JSON.stringify(production));
+    localStorage.setItem('materials', JSON.stringify(materials));
     this.resetForm();
     console.log("Material added or updated successfully.");
+  }
+
+  resetForm() {
+    this.currentProduction = {index: -1, quantity: '', size: '', hoursPerItem: 0, material: '', totalCost: 0}
   }
   render() {
     return html`
@@ -194,7 +215,8 @@ class ClothingForm extends LitElement {
         <h2>Produccion de prenda</h2>
         <form @submit="${this.handleSubmit}">
             <label for="producto-select">Seleccionar Producto:</label>
-            <select id="producto-select" name="producto" @change="${this.handleSelectionChange}">
+            <select id="producto-select" name="producto" @change="${this.handleSelectionChange}">          
+            <option value="">Seleccione un producto</option>
                 ${productos.map((producto, index) => html`<option value="${index}">${producto.nombre}</option>`)}
             </select>
           
@@ -204,34 +226,28 @@ class ClothingForm extends LitElement {
 
         <label for="material-select">Seleccionar Material:</label>
         <select id="material-select" name="material" @change="${this.updateMaterial}">
-          ${this.materials.map(material => html`<option value="${material.name}">${material.name}</option>`)}
+          <option value="">Seleccione un material</option>
+          ${this.materials.map((material, index) => html`<option value="${index}">${material.name}</option>`)}
         </select>
 
         <label for="size-select">Seleccionar Talla:</label>
         <select id="size-select" name="size" @change="${this.updateSize}">
+          <option value="">Seleccione una talla</option>
           <option value="s">S</option>
           <option value="m">M</option>
           <option value="l">L</option>
         </select>
 
-        <label for="quantity-input">Cantidad:</label>
-        <input type="number" id="quantity-input" name="quantity" .value="${this.currentProduction.quantity}" @input="${this.updateQuantity}">
-          <label>Que materiales vas a usar</label>
-          <select id="material-select" name="material">
-          ${this.materials.map(material => html`<option value="${material.name}">${material.name}</option>`)}
-          </select>
-
-          <label>Que talla</label>
-          <input type="text" name="size" .value="${this.currentProduction.size}" @input="${this.updateProduction}">
-
           <label>Horas de trabajo por una prenda</label>
           <input type="number" name="hoursPerItem" .value="${this.currentProduction.hoursPerItem}" @input="${this.updateProduction}">
 
-          <label>Horas de trabajo por una prenda</label>
-          <input type="number" name="hoursPerItem" .value="${this.currentProduction.hoursPerItem}" @input="${this.updateProduction}">
+          <label>Precio por hora de trabajo</label>
+          <input type="number" name="priceHours" .value="${this.currentProduction.priceHours}" @input="${this.updateProduction}">
 
           <button type="button" @click="${this.addProduction}">Generar Produccion</button>
         </form>
+    </div>
+        <production-table> </production-table>
     `;
   }
 
@@ -240,5 +256,5 @@ class ClothingForm extends LitElement {
     this.addMaterial();
   }
 }
-
+// :w
 customElements.define('clothing-form', ClothingForm);

@@ -1,6 +1,7 @@
+import { productos } from './produccion-inventario.js'; 
 import { LitElement, html, css } from 'lit';
 
-class eficiencieTable extends LitElement {
+class productionTable extends LitElement {
   static styles = css`
     .tabla {
       margin-top: 250px;
@@ -76,50 +77,38 @@ class eficiencieTable extends LitElement {
 
   constructor() {
     super();
-    this.eficiencies = JSON.parse(localStorage.getItem('eficiencies')) || [];
+    this.production = JSON.parse(localStorage.getItem('production')) || [];
   }
 
   render() {
     return html`
       <div class="tabla">
-        <h2>Datos de Eficiencia</h2>
+        <h2>Datos de Producion</h2>
         <table>
-          ${this.eficiencies.map(eficiencie => html`
+          ${this.production.map(eficiencie => html`
             <tr>
-              <th>Cantidad de productos terminados</th>
-              <td>${eficiencie.finishedProducts}</td>
+              <th>Nombre del producto</th>
+              <td>${eficiencie.index}</td>
             </tr>
             <tr>
-              <th>Horas totales de producción</th>
-              <td>${eficiencie.workingHours}</td>
+              <th>Cantidad de productos</th>
+              <td>${eficiencie.quantity}</td>
             </tr>
             <tr>
-              <th>Costos Operativos</th>
-              <td>${eficiencie.workingCost}</td>
+              <th>Talla</th>
+              <td>${eficiencie.size}</td>
             </tr>
             <tr>
-              <th>Numero Productos defectuosos</th>
-              <td>${eficiencie.brokenProducts}</td>
+              <th>Horas de trbajo por producto</th>
+              <td>${eficiencie.hoursPerItem}</td>
             </tr>
             <tr>
-              <th>Productividad</th>
-              <td>${eficiencie.productivity}</td>
+              <th>Materia prima</th>
+              <td>${eficiencie.material}</td>
             </tr>
             <tr>
-              <th>Costo operativo por unidad</th>
-              <td>${eficiencie.costPerUnit}</td>
-            </tr>
-            <tr>
-              <th>Tasa de defectos</th>
-              <td>${eficiencie.brokenRate}</td>
-            </tr>
-            <tr>
-              <th>Producción efectiva</th>
-              <td>${eficiencie.efectiveProduction}</td>
-            </tr>
-            <tr>
-              <th>Eficiencia Operativa</th>
-              <td>${eficiencie.operativeEficiency}</td>
+              <th>Costo Total</th>
+              <td>${eficiencie.totalCost}</td>
             </tr>
           `)}
         </table>
@@ -128,4 +117,5 @@ class eficiencieTable extends LitElement {
   }
 }
 
-customElements.define('eficiencie-table', eficiencieTable);
+customElements.define('production-table', productionTable);
+
