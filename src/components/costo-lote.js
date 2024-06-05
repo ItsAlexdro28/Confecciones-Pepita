@@ -224,7 +224,7 @@ class BatchForm extends LitElement {
           <label>Base de asignación (unidades producidas al mes)</label>
           <input type="number" name="assignationBasis" .value="${this.currentBatch.assignationBasis}" @input="${this.updateBatch}" required>
 
-          <button type="button" @click="${this.addBatch}">Registrar</button>
+          <button type="submit">Registrar</button>
         </form>
       </div>
       <div class="popup"></div>
@@ -233,6 +233,7 @@ class BatchForm extends LitElement {
 }
 
 customElements.define('batch-form', BatchForm);
+
 
 
 
